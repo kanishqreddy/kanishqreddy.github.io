@@ -29,10 +29,7 @@
             color: var(--text-main);
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { text-decoration: none; color: inherit; }
 
         .wrapper {
             max-width: 1080px;
@@ -51,10 +48,8 @@
 
         .nav {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            max-width: 1080px;
-            margin: 0 auto;
+            align-items: center;
             padding: 12px 16px;
         }
 
@@ -70,21 +65,14 @@
             border-radius: 999px;
             background: radial-gradient(circle at 30% 0, #facc15, #f97316 40%, #7c3aed);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             font-weight: 700;
-            font-size: 18px;
-        }
-
-        .nav-name {
-            font-weight: 600;
-            letter-spacing: 0.03em;
         }
 
         .nav-links {
             display: flex;
             gap: 18px;
-            font-size: 14px;
         }
 
         .nav-links a {
@@ -95,76 +83,45 @@
             color: var(--text-main);
         }
 
+        section {
+            margin-top: 56px;
+        }
+
         .hero {
             display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+            grid-template-columns: 1fr 1fr;
             gap: 32px;
-            align-items: center;
             padding-top: 32px;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .hero-badge-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
-        }
-
         .hero-title {
-            margin: 16px 0 8px;
             font-size: clamp(32px, 4vw, 40px);
             font-weight: 700;
+            margin: 16px 0 8px;
         }
 
         .hero-subtitle {
-            margin: 0 0 20px;
             color: var(--text-muted);
-            max-width: 460px;
-            line-height: 1.5;
             font-size: 15px;
+            max-width: 460px;
         }
 
         .hero-buttons {
             display: flex;
-            flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 18px;
+            margin-top: 16px;
         }
 
-        .btn-primary,
-        .btn-ghost {
-            border-radius: 999px;
+        .btn-primary, .btn-ghost {
             padding: 10px 20px;
+            border-radius: 999px;
             font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
             border: 1px solid transparent;
-            cursor: pointer;
-            transition: 0.12s ease;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #4f46e5, #ec4899);
             color: white;
-            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
         }
 
         .btn-ghost {
@@ -173,23 +130,21 @@
             color: var(--text-muted);
         }
 
-        .btn-ghost:hover {
-            color: var(--text-main);
-            border-color: rgba(148, 163, 184, 0.7);
-        }
-
-        section {
-            margin-top: 56px;
+        .hero-card, .card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.75);
         }
 
         .section-heading {
             font-size: 20px;
-            margin-bottom: 8px;
         }
 
         .section-sub {
-            color: var(--text-muted);
             font-size: 14px;
+            color: var(--text-muted);
             margin-bottom: 20px;
         }
 
@@ -199,85 +154,48 @@
             gap: 16px;
         }
 
-        .card {
-            background: var(--bg-alt);
-            border-radius: 14px;
-            padding: 18px 18px 16px;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.75);
-        }
-
-        .card h3 {
-            margin: 0 0 6px;
-            font-size: 16px;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
         .tag-row {
             display: flex;
-            flex-wrap: wrap;
             gap: 6px;
+            flex-wrap: wrap;
             margin-top: 10px;
         }
 
         .tag {
-            font-size: 11px;
             padding: 4px 8px;
+            font-size: 11px;
             border-radius: 999px;
             background: var(--accent-soft);
             color: #c7d2fe;
-            border: 1px solid rgba(99, 102, 241, 0.6);
-        }
-
-        .contact-card {
-            text-align: left;
         }
 
         .contact-row {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 12px;
             margin-top: 12px;
             padding-top: 12px;
             border-top: 1px dashed rgba(148, 163, 184, 0.4);
-            font-size: 13px;
         }
 
         footer {
-            padding: 32px 16px 10px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 12px;
+            height: 20px;
         }
 
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
             }
-
-            .hero-right {
-                order: -1;
-                margin-bottom: 12px;
-            }
-
-            .nav-links {
-                display: none;
-            }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
+
 <header>
     <nav class="nav">
         <div class="nav-left">
             <div class="nav-logo">K</div>
-            <div class="nav-name">Kanishq Reddy</div>
+            <div>Kanishq Reddy</div>
         </div>
         <div class="nav-links">
             <a href="#about">About</a>
@@ -289,126 +207,114 @@
 </header>
 
 <div class="wrapper">
-    <main>
 
-        <section class="hero" id="top">
-            <div>
-                <div class="hero-badge"><span class="hero-badge-dot"></span>Available for opportunities</div>
-                <h1 class="hero-title">Hi, I'm Kanishq Reddy 👋</h1>
-                <p class="hero-subtitle">
-                    Tech enthusiast and lifelong learner. I enjoy building clean, simple web experiences and exploring new technologies.
-                </p>
-                <div class="hero-buttons">
-                    <a class="btn-primary" href="#contact">Contact me</a>
-                    <a class="btn-ghost" href="#projects">View projects</a>
+    <section class="hero">
+        <div>
+            <h1 class="hero-title">Hi, I'm Kanishq Reddy 👋</h1>
+            <p class="hero-subtitle">Tech enthusiast and learner exploring web development and modern tools.</p>
+            <div class="hero-buttons">
+                <a class="btn-primary" href="#contact">Contact me</a>
+                <a class="btn-ghost" href="#projects">View projects</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="hero-card">
+                <h3>Snapshot</h3>
+                <p>Quick overview.</p>
+                <div class="tag-row">
+                    <span class="tag">Web Focused</span>
+                    <span class="tag">Fast Learner</span>
+                    <span class="tag">Collaborative</span>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="hero-right">
-                <div class="card">
-                    <h3>Snapshot</h3>
-                    <p>Quick overview of my interests and focus.</p>
-                    <div class="tag-row">
-                        <span class="tag">Web Focused</span>
-                        <span class="tag">Fast Learner</span>
-                        <span class="tag">Collaboration Friendly</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section id="about">
+        <h2 class="section-heading">About Me</h2>
+        <p class="section-sub">A short introduction.</p>
 
-        <section id="about">
-            <h2 class="section-heading">About Me</h2>
-            <p class="section-sub">A short introduction.</p>
+        <div class="card">
+            <p>I'm Kanishq, someone who enjoys solving problems and learning how things work. I like building simple and clean web experiences.</p>
+            <p>I enjoy exploring new tools, improving my skills, and learning new technologies.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-heading">Projects</h2>
+        <p class="section-sub">Some things I’ve worked on.</p>
+
+        <div class="grid">
             <div class="card">
-                <p style="font-size: 14px;">
-                    I'm Kanishq, someone who enjoys solving problems and learning how things work. I like working with modern web tools and building projects that are simple, useful, and easy to understand.
-                </p>
-                <p style="font-size: 14px;">
-                    Outside of coding I’m usually exploring new ideas, learning new technologies, and improving this site.
-                </p>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-heading">Projects</h2>
-            <p class="section-sub">Some things I’ve worked on.</p>
-
-            <div class="grid">
-                <article class="card">
-                    <h3>Portfolio Website</h3>
-                    <p>Responsive portfolio hosted on GitHub Pages with a custom domain.</p>
-                    <div class="tag-row">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">GitHub Pages</span>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <h3>Project Coming Soon</h3>
-                    <p>More projects will be added here as my experience grows.</p>
-                </article>
-
-                <article class="card">
-                    <h3>Another Project</h3>
-                    <p>Additional work will appear here as I build more.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-heading">Skills & Tools</h2>
-            <p class="section-sub">Technologies I work with.</p>
-
-            <div class="grid">
-                <div class="card">
-                    <h3>Languages</h3>
-                    <div class="tag-row">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3>Tools & Platforms</h3>
-                    <div class="tag-row">
-                        <span class="tag">Git</span>
-                        <span class="tag">GitHub</span>
-                        <span class="tag">VS Code</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3>Currently Learning</h3>
-                    <div class="tag-row">
-                        <span class="tag">New Topics</span>
-                    </div>
+                <h3>Portfolio Website</h3>
+                <p>Responsive personal site hosted on GitHub Pages.</p>
+                <div class="tag-row">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
                 </div>
             </div>
-        </section>
 
-        <section id="contact">
-            <h2 class="section-heading">Get in Touch</h2>
-            <p class="section-sub">Feel free to reach out by email.</p>
+            <div class="card">
+                <h3>Project Coming Soon</h3>
+                <p>More projects will be added here.</p>
+            </div>
+        </div>
+    </section>
 
-            <div class="card contact-card">
-                <div class="contact-row">
+    <section id="skills">
+        <h2 class="section-heading">Skills & Tools</h2>
+        <p class="section-sub">Technologies I work with.</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Languages</h3>
+                <div class="tag-row">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Tools</h3>
+                <div class="tag-row">
+                    <span class="tag">GitHub</span>
+                    <span class="tag">VS Code</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Learning</h3>
+                <div class="tag-row">
+                    <span class="tag">New Topics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-heading">Get in Touch</h2>
+        <p class="section-sub">Reach out by email.</p>
+
+        <div class="card">
+            <div class="contact-row">
+                <div>
+                    <div>Email</div>
                     <div>
-                        <div>Email</div>
-                        <div><a href="mailto:kansum11114192113@gmail.com">kansum11114192113@gmail.com</a></div>
+                        <a href="mailto:kansum11114192113@gmail.com">
+                            kansum11114192113@gmail.com
+                        </a>
                     </div>
-                    <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">Email me</a>
                 </div>
+                <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">Email me</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <footer>
-        Built & hosted using GitHub Pages.
-    </footer>
 </div>
+
+<footer></footer>
+
 </body>
 </html>
