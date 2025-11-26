@@ -24,8 +24,7 @@
 
         body {
             margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                sans-serif;
+            font-family: system-ui, sans-serif;
             background: radial-gradient(circle at top, #1d1b4f 0, #050510 55%);
             color: var(--text-main);
         }
@@ -34,8 +33,6 @@
             color: inherit;
             text-decoration: none;
         }
-
-        /* ----- Layout ----- */
 
         .wrapper {
             max-width: 1080px;
@@ -48,12 +45,7 @@
             top: 0;
             z-index: 20;
             backdrop-filter: blur(14px);
-            background: linear-gradient(
-                to bottom,
-                rgba(5, 5, 16, 0.95),
-                rgba(5, 5, 16, 0.7),
-                transparent
-            );
+            background: rgba(5, 5, 16, 0.85);
             border-bottom: 1px solid rgba(148, 163, 184, 0.15);
         }
 
@@ -97,18 +89,11 @@
 
         .nav-links a {
             color: var(--text-muted);
-            padding: 4px 0;
         }
 
         .nav-links a:hover {
             color: var(--text-main);
         }
-
-        main {
-            margin-top: 32px;
-        }
-
-        /* ----- Hero ----- */
 
         .hero {
             display: grid;
@@ -169,8 +154,7 @@
             gap: 8px;
             border: 1px solid transparent;
             cursor: pointer;
-            transition: transform 0.12s ease, box-shadow 0.12s ease,
-                background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+            transition: 0.12s ease;
         }
 
         .btn-primary {
@@ -181,7 +165,6 @@
 
         .btn-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 16px 40px rgba(79, 70, 229, 0.55);
         }
 
         .btn-ghost {
@@ -193,70 +176,7 @@
         .btn-ghost:hover {
             color: var(--text-main);
             border-color: rgba(148, 163, 184, 0.7);
-            background: rgba(15, 23, 42, 0.95);
         }
-
-        .hero-footnote {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .hero-right {
-            justify-self: center;
-        }
-
-        .hero-card {
-            width: 100%;
-            max-width: 360px;
-            padding: 22px 20px;
-            border-radius: 20px;
-            background: radial-gradient(circle at top left, #1d4ed8 0, #111827 55%);
-            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.95);
-            border: 1px solid rgba(148, 163, 184, 0.4);
-        }
-
-        .hero-card-title {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .hero-card-sub {
-            font-size: 13px;
-            color: #cbd5f5;
-            margin-bottom: 16px;
-        }
-
-        .hero-pill-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            font-size: 11px;
-            margin-bottom: 10px;
-        }
-
-        .pill {
-            padding: 4px 9px;
-            border-radius: 999px;
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(148, 163, 184, 0.5);
-        }
-
-        .hero-metrics {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 16px;
-            font-size: 11px;
-        }
-
-        .hero-metric-label {
-            color: rgba(226, 232, 240, 0.7);
-        }
-
-        .hero-metric-value {
-            font-weight: 600;
-        }
-
-        /* ----- Sections ----- */
 
         section {
             margin-top: 56px;
@@ -314,8 +234,6 @@
             border: 1px solid rgba(99, 102, 241, 0.6);
         }
 
-        /* Contact */
-
         .contact-card {
             text-align: left;
         }
@@ -331,14 +249,6 @@
             font-size: 13px;
         }
 
-        .contact-label {
-            color: var(--text-muted);
-        }
-
-        .contact-value {
-            font-weight: 500;
-        }
-
         footer {
             padding: 32px 16px 10px;
             text-align: center;
@@ -346,32 +256,18 @@
             font-size: 12px;
         }
 
-        footer a {
-            color: #a5b4fc;
-        }
-
-        /* ----- Mobile ----- */
-
         @media (max-width: 768px) {
             .hero {
-                grid-template-columns: minmax(0, 1fr);
+                grid-template-columns: 1fr;
             }
 
             .hero-right {
                 order: -1;
-                margin-bottom: 8px;
+                margin-bottom: 12px;
             }
 
             .nav-links {
                 display: none;
-            }
-
-            .wrapper {
-                padding-bottom: 40px;
-            }
-
-            section {
-                margin-top: 40px;
             }
         }
     </style>
@@ -394,96 +290,54 @@
 
 <div class="wrapper">
     <main>
-        <!-- Hero -->
+
         <section class="hero" id="top">
-            <div class="hero-left">
-                <div class="hero-badge">
-                    <span class="hero-badge-dot"></span>
-                    <span>Available for opportunities</span>
-                </div>
+            <div>
+                <div class="hero-badge"><span class="hero-badge-dot"></span>Available for opportunities</div>
                 <h1 class="hero-title">Hi, I'm Kanishq Reddy 👋</h1>
                 <p class="hero-subtitle">
-                    Tech enthusiast and lifelong learner. I enjoy building clean, simple
-                    experiences on the web and constantly sharpening my skills.
+                    Tech enthusiast and lifelong learner. I enjoy building clean, simple web experiences and exploring new technologies.
                 </p>
                 <div class="hero-buttons">
-                    <a class="btn-primary" href="#contact">
-                        Contact me
-                    </a>
-                    <a class="btn-ghost" href="#projects">
-                        View projects
-                    </a>
+                    <a class="btn-primary" href="#contact">Contact me</a>
+                    <a class="btn-ghost" href="#projects">View projects</a>
                 </div>
-                <p class="hero-footnote">
-                    Tip: bookmark <strong>kanishqreddy.space</strong> to check back as I add more work.
-                </p>
             </div>
 
             <div class="hero-right">
-                <div class="hero-card">
-                    <div class="hero-card-title">Snapshot</div>
-                    <div class="hero-card-sub">
-                        Quick look at who I am and what I'm working on.
-                    </div>
-
-                    <div class="hero-pill-row">
-                        <div class="pill">Web & front-end focused</div>
-                        <div class="pill">Curious & fast learner</div>
-                        <div class="pill">Open to collaboration</div>
-                    </div>
-
-                    <div class="hero-metrics">
-                        <div>
-                            <div class="hero-metric-label">Focus</div>
-                            <div class="hero-metric-value">Web & apps</div>
-                        </div>
-                        <div>
-                            <div class="hero-metric-label">Location</div>
-                            <div class="hero-metric-value">Remote-friendly</div>
-                        </div>
-                        <div>
-                            <div class="hero-metric-label">Status</div>
-                            <div class="hero-metric-value">Exploring roles</div>
-                        </div>
+                <div class="card">
+                    <h3>Snapshot</h3>
+                    <p>Quick overview of my interests and focus.</p>
+                    <div class="tag-row">
+                        <span class="tag">Web Focused</span>
+                        <span class="tag">Fast Learner</span>
+                        <span class="tag">Collaboration Friendly</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About -->
         <section id="about">
             <h2 class="section-heading">About Me</h2>
-            <p class="section-sub">
-                A brief introduction. You can adjust this text anytime in
-                <code>index.html</code>.
-            </p>
+            <p class="section-sub">A short introduction.</p>
             <div class="card">
-                <p style="margin-bottom: 10px; font-size: 14px;">
-                    I'm Kanishq, someone who enjoys solving problems and learning how
-                    things work. I like working with modern web tools and building
-                    projects that are simple, useful, and easy to understand.
+                <p style="font-size: 14px;">
+                    I'm Kanishq, someone who enjoys solving problems and learning how things work. I like working with modern web tools and building projects that are simple, useful, and easy to understand.
                 </p>
                 <p style="font-size: 14px;">
-                    Outside of coding I’m usually exploring new ideas, learning new
-                    technologies, and improving this site. If you'd like to connect,
-                    feel free to reach out.
+                    Outside of coding I’m usually exploring new ideas, learning new technologies, and improving this site.
                 </p>
             </div>
         </section>
 
-        <!-- Projects -->
         <section id="projects">
             <h2 class="section-heading">Projects</h2>
-            <p class="section-sub">
-                A few example sections to get you started. Replace these with your own work.
-            </p>
+            <p class="section-sub">Some things I’ve worked on.</p>
+
             <div class="grid">
                 <article class="card">
-                    <h3>Portfolio Website (this site)</h3>
-                    <p>
-                        A lightweight, responsive portfolio hosted on GitHub Pages and
-                        connected to a custom domain with HTTPS.
-                    </p>
+                    <h3>Portfolio Website</h3>
+                    <p>Responsive portfolio hosted on GitHub Pages with a custom domain.</p>
                     <div class="tag-row">
                         <span class="tag">HTML</span>
                         <span class="tag">CSS</span>
@@ -492,41 +346,24 @@
                 </article>
 
                 <article class="card">
-                    <h3>Project Placeholder</h3>
-                    <p>
-                        Replace this block with a real project. Add a short description of
-                        what you built and what you learned.
-                    </p>
-                    <div class="tag-row">
-                        <span class="tag">Your stack</span>
-                        <span class="tag">Your tools</span>
-                    </div>
+                    <h3>Project Coming Soon</h3>
+                    <p>More projects will be added here as my experience grows.</p>
                 </article>
 
                 <article class="card">
                     <h3>Another Project</h3>
-                    <p>
-                        You can link out to GitHub repos or live demos from here. This
-                        section is meant to grow with your experience.
-                    </p>
-                    <div class="tag-row">
-                        <span class="tag">GitHub</span>
-                        <span class="tag">Live Demo</span>
-                    </div>
+                    <p>Additional work will appear here as I build more.</p>
                 </article>
             </div>
         </section>
 
-        <!-- Skills -->
         <section id="skills">
             <h2 class="section-heading">Skills & Tools</h2>
-            <p class="section-sub">
-                Adjust this list based on what you’re most comfortable with.
-            </p>
+            <p class="section-sub">Technologies I work with.</p>
+
             <div class="grid">
                 <div class="card">
                     <h3>Languages</h3>
-                    <p>Example:</p>
                     <div class="tag-row">
                         <span class="tag">HTML</span>
                         <span class="tag">CSS</span>
@@ -536,60 +373,41 @@
 
                 <div class="card">
                     <h3>Tools & Platforms</h3>
-                    <p>Example:</p>
                     <div class="tag-row">
-                        <span class="tag">Git & GitHub</span>
-                        <span class="tag">GitHub Pages</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">GitHub</span>
                         <span class="tag">VS Code</span>
                     </div>
                 </div>
 
                 <div class="card">
                     <h3>Currently Learning</h3>
-                    <p>Use this to show that you keep growing.</p>
                     <div class="tag-row">
-                        <span class="tag">Add</span>
-                        <span class="tag">Your</span>
-                        <span class="tag">Topics</span>
+                        <span class="tag">New Topics</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact -->
         <section id="contact">
             <h2 class="section-heading">Get in Touch</h2>
-            <p class="section-sub">
-                The quickest way to reach me is by email. I’ll do my best to respond.
-            </p>
-            <div class="card contact-card">
-                <p style="font-size: 14px;">
-                    Whether you have a question, a project idea, or just want to say hi,
-                    I’d be happy to hear from you.
-                </p>
+            <p class="section-sub">Feel free to reach out by email.</p>
 
+            <div class="card contact-card">
                 <div class="contact-row">
                     <div>
-                        <div class="contact-label">Email</div>
-                        <div class="contact-value">
-                            <a href="mailto:kansum11114192113@gmail.com">
-                                kansum11114192113@gmail.com
-                            </a>
-                        </div>
+                        <div>Email</div>
+                        <div><a href="mailto:kansum11114192113@gmail.com">kansum11114192113@gmail.com</a></div>
                     </div>
-                    <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">
-                        Email me
-                    </a>
+                    <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">Email me</a>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer>
-        Built & hosted with ❤ using GitHub Pages.  
-        View the code on
-        <a href="https://github.com/kanishqreddy/kanishqreddy.github.io" target="_blank"
-           rel="noopener noreferrer">GitHub</a>.
+        Built & hosted using GitHub Pages.
     </footer>
 </div>
 </body>
