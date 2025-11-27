@@ -5,24 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kanishq Reddy | Portfolio</title>
   <meta name="description" content="Portfolio website of Banda Kanishq Reddy, Business Analytics graduate with experience in automation, data analysis, and cloud reporting." />
-  <meta name="theme-color" content="#111118" />
+  <meta name="theme-color" content="#050507" />
 
   <style>
-    /* =============== THEME: DARK + NEON RED ACCENTS ================= */
+    /* =============== THEME: DARK + NEON RED ACCENTS (Refined) =============== */
     :root {
-      --bg: #020309;               /* page background */
-      --bg-elevated: #050712;      /* section background */
-      --card: #0b0e18;             /* cards */
-      --accent: #ff2244;           /* neon-ish red accent */
-      --accent-soft: rgba(255, 34, 68, 0.16);
-      --accent-strong: rgba(255, 34, 68, 0.6);
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
-      --border-subtle: #151827;
+      --bg: #050507;
+      --bg-elevated: #0a0b10;
+      --card: #0d0e16;
+      --accent: #ff3355;
+      --accent-soft: rgba(255, 51, 85, 0.18);
+      --accent-glow: rgba(255, 51, 85, 0.55);
+      --accent-glow-strong: rgba(255, 51, 85, 0.85);
+      --text-main: #f8f9fa;
+      --text-muted: #9da3b5;
+      --border-subtle: #1b1c25;
 
       --radius-card: 16px;
-      --space-section: 64px;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.65);
+      --space-section: 68px;
+      --shadow-soft: 0 12px 30px rgba(0,0,0,0.7);
     }
 
     * {
@@ -37,7 +38,9 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 20% -10%, rgba(255, 51, 85, 0.16), transparent 55%),
+        var(--bg);
       color: var(--text-main);
     }
 
@@ -47,7 +50,9 @@
     }
 
     a:focus-visible,
-    button:focus-visible {
+    button:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-ghost:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
@@ -87,14 +92,18 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.94),
-        rgba(0, 0, 0, 0.85)
-      );
-      border-bottom: 1px solid rgba(255, 34, 68, 0.28);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(14px);
+      background: rgba(0,0,0,0.82);
+      border-bottom: 1px solid rgba(255, 51, 85, 0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.75);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease,
+                  background 0.2s ease;
+    }
+
+    header.nav-scrolled {
+      background: rgba(0,0,0,0.94);
+      border-bottom-color: rgba(255, 51, 85, 0.32);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.9);
     }
 
     .nav {
@@ -116,14 +125,14 @@
       width: 32px;
       height: 32px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #ff9aac, #ff2244 55%, #4c0513);
+      background: radial-gradient(circle at 30% 0, #ff8899, #ff3355 55%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 16px;
       color: #fff;
-      box-shadow: 0 0 12px rgba(255, 34, 68, 0.65);
+      box-shadow: 0 0 14px rgba(255, 51, 85, 0.65);
     }
 
     .nav-name {
@@ -138,15 +147,31 @@
     }
 
     .nav-links a {
+      position: relative;
       color: var(--text-muted);
-      padding-bottom: 3px;
-      border-bottom: 1px solid transparent;
-      transition: color 0.15s ease, border-color 0.15s ease;
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(90deg, #ff6f8a, #ff3355);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.18s ease-out;
     }
 
     .nav-links a:hover {
       color: var(--text-main);
-      border-color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
     }
 
     /* =============== HERO ================= */
@@ -155,26 +180,45 @@
       margin-top: 32px;
     }
 
-    /* subtle red glow behind hero */
     .hero-wrapper::before {
       content: "";
       position: absolute;
       inset: -80px -80px auto;
       background: radial-gradient(
         circle at top left,
-        rgba(255, 34, 68, 0.4),
-        transparent 60%
+        rgba(255, 51, 85, 0.22),
+        transparent 70%
       );
-      opacity: 0.8;
       z-index: -1;
       pointer-events: none;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       gap: 32px;
       align-items: center;
+    }
+
+    .hero-top-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .hero-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #ff9aad, #ff3355 55%, #4c0513);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 22px;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(255, 51, 85, 0.85);
     }
 
     .hero-kicker {
@@ -185,14 +229,15 @@
       padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid var(--accent-soft);
-      background: rgba(5, 7, 18, 0.85);
+      background: rgba(5,7,18,0.9);
       color: #fca5a5;
+      white-space: nowrap;
     }
 
     .hero-title {
       font-size: clamp(32px, 4vw, 40px);
       font-weight: 700;
-      margin: 16px 0 10px;
+      margin: 8px 0 10px;
     }
 
     .hero-subtitle {
@@ -220,38 +265,38 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease,
-        background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease,
+        background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
     .btn-primary {
-      background: radial-gradient(circle at 20% 0, #ff7a94, #ff2244 60%);
-      color: #ffffff;
-      box-shadow: 0 0 18px rgba(255, 34, 68, 0.7);
+      background: linear-gradient(135deg, #ff3355, #ff4f6e);
+      color: white;
+      box-shadow: 0 0 14px var(--accent-glow);
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 26px rgba(255, 34, 68, 0.95);
+      box-shadow: 0 0 22px var(--accent-glow-strong);
+      transform: translateY(-2px);
     }
 
     .btn-ghost {
-      background: rgba(11, 14, 24, 0.95);
-      border-color: var(--accent-soft);
+      background: rgba(20, 20, 26, 0.9);
+      border-color: rgba(255, 51, 85, 0.24);
       color: var(--text-muted);
     }
 
     .btn-ghost:hover {
       border-color: var(--accent);
-      color: var(--text-main);
+      color: white;
     }
 
     .hero-card {
-      background: radial-gradient(circle at top, #111827, #020617 75%);
+      background: radial-gradient(circle at top, #12131b, #08090e 70%);
       border-radius: 18px;
       padding: 18px 20px;
       border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.55);
     }
 
     .hero-card h3 {
@@ -277,8 +322,8 @@
       padding: 4px 8px;
       font-size: 11px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: #fecaca;
+      background: rgba(255, 51, 85, 0.22);
+      color: #ffadb9;
       white-space: nowrap;
     }
 
@@ -321,7 +366,7 @@
       gap: 18px;
       flex-wrap: wrap;
       padding-top: 12px;
-      border-top: 1px dashed rgba(148, 163, 184, 0.35);
+      border-top: 1px dashed rgba(255, 51, 85, 0.25);
     }
 
     .contact-item-label {
@@ -334,12 +379,36 @@
     }
 
     footer {
-      border-top: 1px solid #0f172a;
+      border-top: 1px solid rgba(255, 51, 85, 0.15);
       padding: 20px 16px 32px;
       text-align: center;
       font-size: 12px;
       color: #6b7280;
-      background: #020309;
+      background: #050507;
+    }
+
+    /* =============== REVEAL ANIMATIONS ================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* — small stagger for children in grids — */
+    .reveal .card {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+    }
+
+    .reveal-visible .card {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* =============== RESPONSIVE ================= */
@@ -363,12 +432,22 @@
       .hero-wrapper::before {
         inset: -60px -40px auto;
       }
+
+      .hero-top-row {
+        gap: 10px;
+      }
+
+      .hero-avatar {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
+  <header id="site-header">
     <nav class="nav">
       <div class="nav-left">
         <div class="nav-logo">K</div>
@@ -386,10 +465,13 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero-wrapper">
+    <section class="hero-wrapper reveal">
       <div class="hero">
         <div>
-          <div class="hero-kicker">Business Analytics &amp; Data</div>
+          <div class="hero-top-row">
+            <div class="hero-avatar">KR</div>
+            <div class="hero-kicker">Business Analytics &amp; Data</div>
+          </div>
           <h1 class="hero-title">Hi, I'm Kanishq Reddy 👋</h1>
           <p class="hero-subtitle">
             Business Analytics graduate with hands-on experience in automation, data
@@ -399,7 +481,8 @@
           <div class="hero-buttons">
             <a class="btn-primary" href="#contact">Contact me</a>
             <a class="btn-ghost" href="#projects">View projects</a>
-            <a class="btn-ghost" href="https://www.linkedin.com/in/kanishq-reddy-243a03148/" target="_blank" rel="noopener">
+            <a class="btn-ghost" href="https://www.linkedin.com/in/kanishq-reddy-243a03148/"
+               target="_blank" rel="noopener">
               LinkedIn
             </a>
           </div>
@@ -420,7 +503,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="reveal">
       <h2 class="section-heading">About Me</h2>
       <p class="section-sub">A bit about my background and interests.</p>
 
@@ -443,7 +526,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects">
+    <section id="projects" class="reveal">
       <h2 class="section-heading">Projects &amp; Experience</h2>
       <p class="section-sub">A selection of professional and academic work.</p>
 
@@ -524,7 +607,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills">
+    <section id="skills" class="reveal">
       <h2 class="section-heading">Skills &amp; Tools</h2>
       <p class="section-sub">Technologies and areas I work with.</p>
 
@@ -576,7 +659,7 @@
     </section>
 
     <!-- EDUCATION -->
-    <section id="education">
+    <section id="education" class="reveal">
       <h2 class="section-heading">Education</h2>
       <p class="section-sub">Academic background.</p>
 
@@ -593,7 +676,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
+    <section id="contact" class="reveal">
       <h2 class="section-heading">Get in Touch</h2>
       <p class="section-sub">Open to roles in data, analytics, and automation.</p>
 
@@ -620,7 +703,34 @@
   </footer>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Navbar glow on scroll
+    const header = document.getElementById("site-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) {
+        header.classList.add("nav-scrolled");
+      } else {
+        header.classList.remove("nav-scrolled");
+      }
+    });
+
+    // Reveal-on-scroll animations
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    revealEls.forEach((el) => observer.observe(el));
   </script>
 </body>
 </html>
