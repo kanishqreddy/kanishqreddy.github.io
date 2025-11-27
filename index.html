@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanishq Reddy | Portfolio</title>
-    <meta name="description" content="Portfolio website of Kanishq Reddy." />
+    <meta name="description" content="Portfolio website of Banda Kanishq Reddy, Business Analytics graduate with experience in automation, data analysis, and cloud reporting." />
+    <meta name="theme-color" content="#050510" />
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:title" content="Kanishq Reddy | Portfolio" />
+    <meta property="og:description" content="Business Analytics graduate with experience in automation, data analysis, cloud reporting, and automation engineering." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kanishqreddy.space" />
+
+    <!-- Favicon (add your own icon at /favicon.png) -->
+    <!-- <link rel="icon" href="/favicon.png" /> -->
+
     <style>
         :root {
             --bg: #050510;
@@ -15,26 +26,38 @@
             --text-main: #f9fafb;
             --text-muted: #9ca3af;
             --border-subtle: #1f2933;
+
+            --radius-card: 14px;
+            --space-section: 56px;
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
-            font-family: system-ui, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                sans-serif;
             background: radial-gradient(circle at top, #1d1b4f 0, #050510 55%);
             color: var(--text-main);
         }
 
-        a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-        .wrapper {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 16px 64px;
+        a:focus-visible,
+        button:focus-visible,
+        .btn-primary:focus-visible,
+        .btn-ghost:focus-visible {
+            outline: 2px solid #f97316;
+            outline-offset: 3px;
         }
 
         header {
@@ -47,16 +70,20 @@
         }
 
         .nav {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 12px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
         }
 
         .nav-left {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 15px;
+            font-weight: 500;
         }
 
         .nav-logo {
@@ -73,6 +100,7 @@
         .nav-links {
             display: flex;
             gap: 18px;
+            font-size: 14px;
         }
 
         .nav-links a {
@@ -83,13 +111,20 @@
             color: var(--text-main);
         }
 
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 16px 64px;
+        }
+
         section {
-            margin-top: 56px;
+            margin-top: var(--space-section);
+            scroll-margin-top: 96px; /* so headings aren't hidden under sticky nav */
         }
 
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 32px;
             padding-top: 32px;
         }
@@ -103,25 +138,51 @@
         .hero-subtitle {
             color: var(--text-muted);
             font-size: 15px;
-            max-width: 460px;
+            max-width: 520px;
+            line-height: 1.6;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
         .hero-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 16px;
+            margin-top: 18px;
+            flex-wrap: wrap;
         }
 
-        .btn-primary, .btn-ghost {
+        .btn-primary,
+        .btn-ghost {
             padding: 10px 20px;
             border-radius: 999px;
             font-size: 14px;
             border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #4f46e5, #ec4899);
             color: white;
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(79, 70, 229, 0.7);
         }
 
         .btn-ghost {
@@ -130,16 +191,43 @@
             color: var(--text-muted);
         }
 
-        .hero-card, .card {
+        .btn-ghost:hover {
+            border-color: rgba(148, 163, 184, 0.7);
+            color: var(--text-main);
+        }
+
+        .hero-card,
+        .card {
             background: var(--bg-alt);
             border: 1px solid var(--border-subtle);
-            border-radius: 14px;
+            border-radius: var(--radius-card);
             padding: 18px;
             box-shadow: 0 18px 40px rgba(15, 23, 42, 0.75);
+            transition: transform 0.2s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .hero-card:hover,
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(129, 140, 248, 0.6);
+            box-shadow: 0 22px 45px rgba(15, 23, 42, 0.95);
+        }
+
+        .hero-card h3 {
+            margin-top: 0;
+            margin-bottom: 6px;
+        }
+
+        .hero-card p {
+            margin-top: 0;
+            font-size: 14px;
+            color: var(--text-muted);
         }
 
         .section-heading {
             font-size: 20px;
+            margin-bottom: 4px;
         }
 
         .section-sub {
@@ -150,7 +238,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 16px;
         }
 
@@ -167,25 +255,105 @@
             border-radius: 999px;
             background: var(--accent-soft);
             color: #c7d2fe;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            margin: 0 0 4px;
+            font-size: 16px;
+        }
+
+        .card-subtitle {
+            margin: 0 0 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .card p {
+            font-size: 14px;
+            line-height: 1.55;
+            margin: 6px 0;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            margin: 8px 0;
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
         .contact-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            gap: 16px;
             margin-top: 12px;
             padding-top: 12px;
             border-top: 1px dashed rgba(148, 163, 184, 0.4);
+            flex-wrap: wrap;
+        }
+
+        .contact-item-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .contact-item-value {
+            font-size: 14px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-subtle {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .link-subtle:hover {
+            color: var(--text-main);
+            text-decoration: underline;
         }
 
         footer {
-            height: 20px;
+            height: 32px;
+            font-size: 11px;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @media (max-width: 768px) {
+            .nav {
+                padding-inline: 12px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            main {
+                padding: 0 12px 48px;
+            }
+
             .hero {
                 grid-template-columns: 1fr;
+                padding-top: 20px;
             }
-            .nav-links { display: none; }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -201,120 +369,307 @@
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 </header>
 
-<div class="wrapper">
+<main>
 
+    <!-- HERO -->
     <section class="hero">
         <div>
+            <div class="hero-badge">
+                <span>Business Analytics & Data</span>
+            </div>
             <h1 class="hero-title">Hi, I'm Kanishq Reddy 👋</h1>
-            <p class="hero-subtitle">Tech enthusiast and learner exploring web development and modern tools.</p>
+            <p class="hero-subtitle">
+                Business Analytics graduate with hands-on experience in automation,
+                data analysis, and cloud reporting. I enjoy turning complex data into
+                meaningful insights and building efficient automated workflows using
+                Python, SQL, and modern analytics tools.
+            </p>
+
             <div class="hero-buttons">
                 <a class="btn-primary" href="#contact">Contact me</a>
                 <a class="btn-ghost" href="#projects">View projects</a>
+                <a class="btn-ghost" href="https://www.linkedin.com/in/kanishq-reddy-243a03148/" target="_blank" rel="noopener">
+                    LinkedIn
+                </a>
             </div>
         </div>
 
         <div>
             <div class="hero-card">
                 <h3>Snapshot</h3>
-                <p>Quick overview.</p>
+                <p>Quick overview of what I do.</p>
                 <div class="tag-row">
-                    <span class="tag">Web Focused</span>
-                    <span class="tag">Fast Learner</span>
-                    <span class="tag">Collaborative</span>
+                    <span class="tag">Python &amp; SQL</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Automation Engineering</span>
+                    <span class="tag">Cloud Reporting</span>
+                    <span class="tag">Dashboarding</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
         <h2 class="section-heading">About Me</h2>
-        <p class="section-sub">A short introduction.</p>
+        <p class="section-sub">A bit about my background and interests.</p>
 
         <div class="card">
-            <p>I'm Kanishq, someone who enjoys solving problems and learning how things work. I like building simple and clean web experiences.</p>
-            <p>I enjoy exploring new tools, improving my skills, and learning new technologies.</p>
+            <p>
+                I'm Banda Kanishq Reddy, a Business Analytics graduate with hands-on experience
+                across automation engineering, data analysis, cloud reporting, and dashboard development.
+                I’ve worked in environments spanning cloud infrastructure, HR tech, and server data centres
+                where I collaborated with engineers, analysts, and business stakeholders to deliver
+                data-driven solutions.
+            </p>
+            <p>
+                My work includes building automation pipelines, internal reporting applications, performance
+                dashboards, and machine learning projects. I enjoy solving problems, improving workflows,
+                and using tools like Python, SQL, QlikSense, and Selenium to transform data into
+                actionable insights.
+            </p>
+            <p>
+                Currently, I’m focused on strengthening my analytics, automation, and product-thinking skills,
+                and I’m open to opportunities in data, analytics, and automation-focused roles.
+            </p>
         </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
-        <h2 class="section-heading">Projects</h2>
-        <p class="section-sub">Some things I’ve worked on.</p>
+        <h2 class="section-heading">Projects & Experience Highlights</h2>
+        <p class="section-sub">A selection of professional and academic work.</p>
 
         <div class="grid">
+            <!-- Project 1 -->
             <div class="card">
-                <h3>Portfolio Website</h3>
-                <p>Responsive personal site hosted on GitHub Pages.</p>
+                <h3 class="card-title">Automation & App for Server Reports</h3>
+                <p class="card-subtitle">Bharath Cloud Ltd &nbsp;•&nbsp; 2024 – 2025</p>
+                <p>
+                    Built an automation pipeline and internal application for generating and
+                    visualizing server reports for a data centre.
+                </p>
+                <ul>
+                    <li>Automated extraction, filtration, and transformation of high-volume server data using Python and SQL.</li>
+                    <li>Developed an internal reporting app to fetch, filter, and visualize server performance metrics in real time.</li>
+                    <li>Created reusable scripts and scheduled reporting workflows that significantly reduced manual effort.</li>
+                </ul>
                 <div class="tag-row">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">Dashboarding</span>
                 </div>
             </div>
 
+            <!-- Project 2 -->
             <div class="card">
-                <h3>Project Coming Soon</h3>
-                <p>More projects will be added here.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2 class="section-heading">Skills & Tools</h2>
-        <p class="section-sub">Technologies I work with.</p>
-
-        <div class="grid">
-            <div class="card">
-                <h3>Languages</h3>
+                <h3 class="card-title">Cloud Usage & Infrastructure Dashboards</h3>
+                <p class="card-subtitle">CtrlS Pvt Ltd &nbsp;•&nbsp; 2022 – 2023</p>
+                <p>
+                    Data analyst role focused on infrastructure and cloud usage metrics to
+                    support operational decision-making.
+                </p>
+                <ul>
+                    <li>Designed SQL-based dashboards and automated reports for uptime, utilization, and SLA performance.</li>
+                    <li>Improved data quality through preprocessing and validation scripts in Python.</li>
+                    <li>Partnered with cross-functional teams to understand data requirements and deliver timely insights.</li>
+                </ul>
                 <div class="tag-row">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Reporting</span>
+                    <span class="tag">Stakeholder Engagement</span>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="card">
+                <h3 class="card-title">Automation Testing Framework</h3>
+                <p class="card-subtitle">ADP (Automatic Data Processing) &nbsp;•&nbsp; 2021 – 2022</p>
+                <p>
+                    Automation engineer responsible for building automated test suites for HR &amp; payroll workflows.
+                </p>
+                <ul>
+                    <li>Developed automation scripts using Python and Selenium to test end-to-end workflows.</li>
+                    <li>Reduced manual testing effort by converting repetitive test cases into automated suites.</li>
+                    <li>Documented test scenarios, bugs, and user flows to support continuous integration.</li>
+                </ul>
+                <div class="tag-row">
+                    <span class="tag">Python</span>
+                    <span class="tag">Selenium</span>
+                    <span class="tag">Automation Testing</span>
                     <span class="tag">JavaScript</span>
                 </div>
             </div>
 
+            <!-- Project 4 -->
             <div class="card">
-                <h3>Tools</h3>
+                <h3 class="card-title">Machine Learning & Analytics Projects</h3>
+                <p class="card-subtitle">Academic & Client Projects</p>
+                <p>
+                    Worked on multiple analytics and ML-focused projects during my studies and client engagements.
+                </p>
+                <ul>
+                    <li>Movie recommender system using machine learning techniques.</li>
+                    <li>COVID-19 analysis and comparison with other pandemics using R.</li>
+                    <li>Colorization of black and white images using deep learning in Python.</li>
+                    <li>Data warehouse design, queue optimization models, NoSQL e-commerce database, and more.</li>
+                </ul>
                 <div class="tag-row">
-                    <span class="tag">GitHub</span>
-                    <span class="tag">VS Code</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Learning</h3>
-                <div class="tag-row">
-                    <span class="tag">New Topics</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">R</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Data Modelling</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SKILLS -->
+    <section id="skills">
+        <h2 class="section-heading">Skills & Tools</h2>
+        <p class="section-sub">Technologies and areas I work with.</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">Languages</h3>
+                <p class="card-subtitle">Programming & scripting</p>
+                <div class="tag-row">
+                    <span class="tag">Python</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">R (Academic)</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Tools & Platforms</h3>
+                <p class="card-subtitle">For analytics, automation & reporting</p>
+                <div class="tag-row">
+                    <span class="tag">QlikSense</span>
+                    <span class="tag">Selenium</span>
+                    <span class="tag">Streamlit</span>
+                    <span class="tag">GitHub</span>
+                    <span class="tag">VS Code</span>
+                    <span class="tag">Excel</span>
+                    <span class="tag">PowerPoint</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Areas of Expertise</h3>
+                <p class="card-subtitle">What I enjoy working on</p>
+                <div class="tag-row">
+                    <span class="tag">Automation</span>
+                    <span class="tag">Data Cleaning</span>
+                    <span class="tag">ETL &amp; Pipelines</span>
+                    <span class="tag">Dashboarding</span>
+                    <span class="tag">Cloud Reporting</span>
+                    <span class="tag">Analytics Workflows</span>
+                    <span class="tag">ML (Academic)</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Certifications</h3>
+                <p class="card-subtitle">Selected achievements</p>
+                <ul>
+                    <li>PCEP – Certified Entry-Level Python Programmer (OpenEDG).</li>
+                    <li>AWS Partner: Data Analytics on AWS (Technical).</li>
+                    <li>Dataiku Core &amp; Advanced Designer certifications.</li>
+                    <li>Python Associate Course – Cisco.</li>
+                    <li>GRE 317/340 &amp; IELTS 7.0 overall.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <h2 class="section-heading">Education</h2>
+        <p class="section-sub">Academic background.</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">Master of Business Analytics (MSBA)</h3>
+                <p class="card-subtitle">Macquarie University &nbsp;•&nbsp; Sydney, Australia</p>
+                <p>
+                    Focused on analytics, data-driven decision making, and business problem-solving
+                    using quantitative and data science techniques.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Bachelor of Data Science (BDS)</h3>
+                <p class="card-subtitle">S P Jain School of Global Management &nbsp;•&nbsp; Sydney, Australia</p>
+                <p>
+                    Covered statistics, machine learning, programming, data warehousing, and analytics
+                    with hands-on projects in Python and R.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact">
         <h2 class="section-heading">Get in Touch</h2>
-        <p class="section-sub">Reach out by email.</p>
+        <p class="section-sub">Open to roles in data, analytics, and automation.</p>
 
         <div class="card">
             <div class="contact-row">
-                <div>
-                    <div>Email</div>
+                <div class="contact-links">
                     <div>
-                        <a href="mailto:kansum11114192113@gmail.com">
-                            kansum11114192113@gmail.com
-                        </a>
+                        <div class="contact-item-label">Email</div>
+                        <div class="contact-item-value">
+                            <a href="mailto:kanishqreddy.banda@students.mq.edu.au">
+                                kanishqreddy.banda@students.mq.edu.au
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="contact-item-label">Phone</div>
+                        <div class="contact-item-value">
+                            <a href="tel:+61490364479">+61 490 364 479</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="contact-item-label">LinkedIn</div>
+                        <div class="contact-item-value">
+                            <a class="link-subtle"
+                               href="https://www.linkedin.com/in/kanishq-reddy-243a03148/"
+                               target="_blank" rel="noopener">
+                                linkedin.com/in/kanishq-reddy-243a03148/
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">Email me</a>
+
+                <a class="btn-primary" href="mailto:kanishqreddy.banda@students.mq.edu.au">
+                    Email me
+                </a>
             </div>
         </div>
     </section>
 
-</div>
+</main>
 
-<footer></footer>
+<footer>
+    © <span id="year"></span> Kanishq Reddy
+</footer>
+
+<script>
+    // Simple dynamic year for footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
