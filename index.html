@@ -188,9 +188,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(190, 200, 212, 0.45);
-      display: inline-block;
-      margin-top: 1px;
+      background: rgba(255, 255, 255, 0.35);
       transition: background 0.25s ease, transform 0.25s ease;
     }
 
@@ -206,7 +204,7 @@
     .nav-link:hover .nav-bullet,
     .nav-link--active .nav-bullet {
       background: var(--accent);
-      transform: scale(1.35);
+      transform: scale(1.4);
       box-shadow: 0 0 0 1px rgba(244, 67, 92, 0.4);
     }
 
@@ -247,14 +245,15 @@
       margin-bottom: 50px;
     }
 
+    /* softer, professional glow */
     .hero-wrapper::before {
       content: "";
       position: absolute;
-      inset: -80px -80px auto;
+      inset: -60px -40px auto;
       background: radial-gradient(
         circle at top left,
-        rgba(244, 67, 92, 0.16),
-        transparent 70%
+        rgba(244, 67, 92, 0.08),
+        transparent 75%
       );
       z-index: -1;
       pointer-events: none;
@@ -264,14 +263,14 @@
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       gap: 32px;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .hero-top-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     /* more professional avatar */
@@ -306,7 +305,7 @@
     .hero-title {
       font-size: clamp(32px, 4vw, 40px);
       font-weight: 700;
-      margin: 8px 0 10px;
+      margin: 0 0 10px;
     }
 
     .hero-subtitle {
@@ -351,24 +350,24 @@
 
     /* more visible ghost button */
     .btn-ghost {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: #d1d5db;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #e2e8f0;
     }
 
     .btn-ghost:hover {
-      background: rgba(244, 67, 92, 0.12);
+      background: rgba(244, 67, 92, 0.18);
       border-color: #f4435c;
       color: #fff;
     }
 
     /* unified hero snapshot card */
     .hero-card {
-      background: rgba(15, 18, 28, 0.85);
-      border-radius: 18px;
+      background: rgba(12, 14, 21, 0.9);
+      border-radius: 16px;
       padding: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
     }
 
     .hero-card h3 {
@@ -488,6 +487,12 @@
     .reveal-visible .card {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* =============== SECTION OVERRIDES ================= */
+    /* extra breathing room after hero before About */
+    #about {
+      margin-top: 90px;
     }
 
     /* =============== RESPONSIVE ================= */
