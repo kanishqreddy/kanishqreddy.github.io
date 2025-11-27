@@ -37,10 +37,12 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background:
-        radial-gradient(circle at 18% -10%, rgba(244, 67, 92, 0.12), transparent 55%),
-        radial-gradient(circle at bottom, rgba(15,23,42,0.35), transparent 60%),
-        var(--bg);
+      background: linear-gradient(
+        180deg,
+        #07080d 0%,
+        #0a0b12 35%,
+        #0b0b11 70%
+      ) fixed;
       color: var(--text-main);
     }
 
@@ -55,6 +57,23 @@
     .btn-ghost:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
+    }
+
+    /* subtle top glow */
+    .top-glow {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 1200px;
+      height: 280px;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        circle at top,
+        rgba(244, 67, 92, 0.15),
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: -1;
     }
 
     /* =============== NAVBAR (CLEAN + BULLETS) =============== */
@@ -164,29 +183,20 @@
       transform: scaleX(1);
     }
 
-    /* small geometric bullets for uniqueness */
+    /* geometric bullets */
     .nav-bullet {
-      width: 8px;
-      height: 8px;
-      background: rgba(148, 163, 184, 0.6);
-      border-radius: 999px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(190, 200, 212, 0.45);
       display: inline-block;
-      flex-shrink: 0;
-      transition: background 0.18s ease, transform 0.18s ease;
+      margin-top: 1px;
+      transition: background 0.25s ease, transform 0.25s ease;
     }
 
-    .nav-bullet--projects {
-      border-radius: 2px;
-    }
-
-    .nav-bullet--skills {
-      border-radius: 40% 60% 50% 60%;
-    }
-
-    .nav-bullet--education {
-      border-radius: 45% 45% 65% 65%;
-    }
-
+    .nav-bullet--projects { border-radius: 2px; }
+    .nav-bullet--skills { border-radius: 40% 60% 50% 60%; }
+    .nav-bullet--education { border-radius: 45% 45% 65% 65%; }
     .nav-bullet--contact {
       border-radius: 999px;
       box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.3);
@@ -196,7 +206,7 @@
     .nav-link:hover .nav-bullet,
     .nav-link--active .nav-bullet {
       background: var(--accent);
-      transform: scale(1.2);
+      transform: scale(1.35);
       box-shadow: 0 0 0 1px rgba(244, 67, 92, 0.4);
     }
 
@@ -233,7 +243,8 @@
     /* =============== HERO ================= */
     .hero-wrapper {
       position: relative;
-      margin-top: 32px;
+      margin-top: 60px;
+      margin-bottom: 50px;
     }
 
     .hero-wrapper::before {
@@ -263,18 +274,20 @@
       margin-bottom: 10px;
     }
 
+    /* more professional avatar */
     .hero-avatar {
       width: 52px;
       height: 52px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #ffccd3, #f4435c 55%, #4c0513);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e1e23, #111);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 22px;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(244, 67, 92, 0.6);
+      color: #f4435c;
+      box-shadow: 0 0 18px rgba(244, 67, 92, 0.25);
     }
 
     .hero-kicker {
@@ -336,23 +349,26 @@
       transform: translateY(-1px);
     }
 
+    /* more visible ghost button */
     .btn-ghost {
-      background: rgba(17,24,39,0.95);
-      border-color: rgba(148, 163, 184, 0.35);
-      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #d1d5db;
     }
 
     .btn-ghost:hover {
-      border-color: var(--accent);
-      color: #f9fafb;
+      background: rgba(244, 67, 92, 0.12);
+      border-color: #f4435c;
+      color: #fff;
     }
 
+    /* unified hero snapshot card */
     .hero-card {
-      background: radial-gradient(circle at top, #121827, #050712 70%);
+      background: rgba(15, 18, 28, 0.85);
       border-radius: 18px;
-      padding: 18px 20px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 6px 22px rgba(0,0,0,0.55);
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
     }
 
     .hero-card h3 {
@@ -516,6 +532,9 @@
 </head>
 
 <body>
+  <!-- subtle top glow background layer -->
+  <div class="top-glow"></div>
+
   <header id="site-header">
     <nav class="nav">
       <div class="nav-left">
