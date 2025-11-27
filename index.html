@@ -8,9 +8,10 @@
   <meta name="theme-color" content="#050507" />
 
   <style>
-    /* =============== THEME =============== */
+    /* =============== THEME: DARK + NEON RED ACCENTS (Refined) =============== */
     :root {
       --bg: #050507;
+      --bg-elevated: #0a0b10;
       --card: #0d0e16;
       --accent: #ff3355;
       --accent-soft: rgba(255, 51, 85, 0.18);
@@ -35,9 +36,11 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       background:
         radial-gradient(circle at 20% -10%, rgba(255, 51, 85, 0.16), transparent 55%),
+        radial-gradient(circle at bottom, rgba(15,23,42,0.5), transparent 60%),
         var(--bg);
       color: var(--text-main);
     }
@@ -48,98 +51,213 @@
     }
 
     a:focus-visible,
-    button:focus-visible {
+    button:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-ghost:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
 
-    /* =============== SIDEBAR NAV =============== */
-    .sidebar {
-      position: fixed;
+    /* =============== NAVBAR (TOP PILL + CUSTOM ICON SHAPES) =============== */
+    header {
+      position: sticky;
       top: 0;
-      left: 0;
-      bottom: 0;
-      width: 80px;
-      padding: 16px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-      background: rgba(0,0,0,0.96);
-      border-right: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 0 32px rgba(0,0,0,0.95);
-      z-index: 30;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(0,0,0,0.82);
+      border-bottom: 1px solid rgba(255, 51, 85, 0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.75);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease,
+                  background 0.2s ease;
     }
 
-    .sidebar-logo {
-      width: 44px;
-      height: 44px;
+    header.nav-scrolled {
+      background: rgba(0,0,0,0.94);
+      border-bottom-color: rgba(255, 51, 85, 0.32);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.9);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #ff9aad, #ff3355 55%, #4c0513);
+      background: radial-gradient(circle at 30% 0, #ff8899, #ff3355 55%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 16px;
       color: #fff;
-      box-shadow: 0 0 18px rgba(255, 51, 85, 0.85);
+      box-shadow: 0 0 14px rgba(255, 51, 85, 0.65);
     }
 
-    .sidebar-name {
-      font-size: 11px;
-      text-align: center;
-      color: var(--text-muted);
-      line-height: 1.3;
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
     }
 
-    .sidebar-nav {
-      margin-top: 12px;
+    /* pill menu container */
+    .nav-links {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .sidebar-link {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background: radial-gradient(circle at top, #111827, #020617 70%);
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.96),
+        rgba(7, 7, 14, 0.96)
+      );
+      box-shadow: 0 10px 28px rgba(0,0,0,0.9);
       border: 1px solid rgba(148, 163, 184, 0.25);
-      display: flex;
-      flex-direction: column;
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-muted);
+      overflow: hidden;
+      isolation: isolate;
+      transition: color 0.18s ease, background 0.18s ease,
+                  box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-label {
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .nav-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255, 51, 85, 0.4), transparent 70%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.18s ease-out;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+      background: rgba(255, 51, 85, 0.12);
+      box-shadow: 0 0 12px rgba(255, 51, 85, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .nav-link:hover::before {
+      opacity: 1;
+    }
+
+    /* active state */
+    .nav-link--active {
+      color: #ffffff;
+      background: rgba(255, 51, 85, 0.18);
+      box-shadow:
+        0 0 18px rgba(255, 51, 85, 0.7),
+        0 10px 24px rgba(0,0,0,0.9);
+      transform: translateY(-1px);
+    }
+
+    .nav-link--active::before {
+      opacity: 1;
+    }
+
+    /* base nav icon shape */
+    .nav-icon {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
       font-size: 11px;
-      color: var(--text-muted);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.85);
-      transition: transform 0.18s ease, box-shadow 0.18s ease,
-                  border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+      font-weight: 600;
+      color: #fca5a5;
+      flex-shrink: 0;
     }
 
-    .sidebar-link span.icon {
-      font-size: 16px;
+    .nav-icon::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 51, 85, 0.6);
+      background: radial-gradient(circle at 30% 0, rgba(255, 51, 85, 0.5), #111827);
+      box-shadow: 0 0 6px rgba(255, 51, 85, 0.5);
+      z-index: -1;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease,
+                  background 0.18s ease;
     }
 
-    .sidebar-link:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-      color: #fff;
-      box-shadow: 0 0 18px rgba(255, 51, 85, 0.7);
-      background: radial-gradient(circle at top, rgba(255, 51, 85, 0.4), #020617 80%);
+    /* per-section icon shapes */
+    .nav-icon--about::before {
+      border-radius: 999px;            /* classic circle */
     }
 
-    /* =============== MAIN LAYOUT =============== */
+    .nav-icon--projects::before {
+      border-radius: 6px;              /* soft square */
+    }
+
+    .nav-icon--skills::before {
+      border-radius: 55% 35% 55% 35%;  /* organic squircle */
+    }
+
+    .nav-icon--education::before {
+      border-radius: 40% 40% 60% 60%;  /* tab-like */
+    }
+
+    .nav-icon--contact::before {
+      border-radius: 999px;
+      background: radial-gradient(circle, #050507 45%, #ff3355 80%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+        0 0 8px rgba(255, 51, 85, 0.6);  /* ring / target feel */
+    }
+
+    /* hover on icons */
+    .nav-link:hover .nav-icon::before,
+    .nav-link--active .nav-icon::before {
+      border-color: rgba(255, 51, 85, 0.9);
+      background: radial-gradient(circle at 30% 0, #ff6f8a, #ff3355 60%);
+      box-shadow: 0 0 10px rgba(255, 51, 85, 0.9);
+    }
+
+    .nav-link:hover .nav-icon,
+    .nav-link--active .nav-icon {
+      color: #ffffff;
+    }
+
+    /* =============== LAYOUT =============== */
     main {
       max-width: 1080px;
       margin: 0 auto;
       padding: 0 16px 72px;
-      margin-left: 80px; /* space for sidebar */
     }
 
     section {
       margin-top: var(--space-section);
-      scroll-margin-top: 32px;
+      scroll-margin-top: 96px;
     }
 
     .section-heading {
@@ -160,7 +278,7 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
-    /* =============== HERO =============== */
+    /* =============== HERO ================= */
     .hero-wrapper {
       position: relative;
       margin-top: 32px;
@@ -313,13 +431,23 @@
       white-space: nowrap;
     }
 
-    /* =============== CARDS & SECTIONS =============== */
+    /* =============== CARDS =============== */
     .card {
       background: var(--card);
       border-radius: var(--radius-card);
       border: 1px solid var(--border-subtle);
       padding: 18px 20px;
       box-shadow: var(--shadow-soft);
+      transition: transform 0.18s ease, box-shadow 0.18s ease,
+                  border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 51, 85, 0.35);
+      box-shadow:
+        0 14px 32px rgba(0,0,0,0.9),
+        0 0 10px rgba(255, 51, 85, 0.3);
     }
 
     .card h3 {
@@ -371,7 +499,6 @@
       font-size: 12px;
       color: #6b7280;
       background: #050507;
-      margin-left: 80px;
     }
 
     /* =============== REVEAL ANIMATIONS =============== */
@@ -397,91 +524,76 @@
       transform: translateY(0);
     }
 
-    /* =============== RESPONSIVE (MOBILE) =============== */
+    /* =============== RESPONSIVE ================= */
     @media (max-width: 768px) {
-      .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 60px;
-        width: auto;
-        padding: 8px 12px;
-        flex-direction: row;
-        justify-content: space-between;
-        border-right: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      main {
+        padding: 0 14px 56px;
       }
 
-      .sidebar-name {
+      .nav {
+        padding-inline: 14px;
+      }
+
+      .nav-links {
         display: none;
       }
 
-      .sidebar-nav {
-        flex-direction: row;
-        margin-top: 0;
-        gap: 6px;
+      .hero {
+        grid-template-columns: 1fr;
       }
 
-      .sidebar-link {
-        width: auto;
-        height: 44px;
-        padding: 0 10px;
-        border-radius: 999px;
-        flex-direction: row;
-        gap: 6px;
+      .hero-wrapper::before {
+        inset: -60px -40px auto;
       }
 
-      .sidebar-link span.label {
-        display: inline;
+      .hero-top-row {
+        gap: 10px;
       }
 
-      main {
-        margin-left: 0;
-        padding: 80px 14px 56px;
-      }
-
-      footer {
-        margin-left: 0;
+      .hero-avatar {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- SIDEBAR NAV -->
-  <aside class="sidebar">
-    <div>
-      <div class="sidebar-logo">KR</div>
-      <div class="sidebar-name">Kanishq<br />Reddy</div>
-    </div>
-    <nav class="sidebar-nav">
-      <a class="sidebar-link" href="#about">
-        <span class="icon">👤</span>
-        <span class="label">About</span>
-      </a>
-      <a class="sidebar-link" href="#projects">
-        <span class="icon">📂</span>
-        <span class="label">Projects</span>
-      </a>
-      <a class="sidebar-link" href="#skills">
-        <span class="icon">🧰</span>
-        <span class="label">Skills</span>
-      </a>
-      <a class="sidebar-link" href="#education">
-        <span class="icon">🎓</span>
-        <span class="label">Edu</span>
-      </a>
-      <a class="sidebar-link" href="#contact">
-        <span class="icon">✉️</span>
-        <span class="label">Contact</span>
-      </a>
+  <header id="site-header">
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="nav-logo">K</div>
+        <div class="nav-name">Kanishq Reddy</div>
+      </div>
+      <div class="nav-links">
+        <a class="nav-link" href="#about">
+          <span class="nav-icon nav-icon--about">A</span>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="nav-link" href="#projects">
+          <span class="nav-icon nav-icon--projects">P</span>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="nav-link" href="#skills">
+          <span class="nav-icon nav-icon--skills">S</span>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="nav-link" href="#education">
+          <span class="nav-icon nav-icon--education">E</span>
+          <span class="nav-label">Education</span>
+        </a>
+        <a class="nav-link" href="#contact">
+          <span class="nav-icon nav-icon--contact">C</span>
+          <span class="nav-label">Contact</span>
+        </a>
+      </div>
     </nav>
-  </aside>
+  </header>
 
   <main>
     <!-- HERO -->
-    <section class="hero-wrapper reveal">
+    <section class="hero-wrapper reveal" id="hero">
       <div class="hero">
         <div>
           <div class="hero-top-row">
@@ -719,23 +831,68 @@
   </footer>
 
   <script>
-    // footer year
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // reveal on scroll
+    // Navbar glow on scroll
+    const header = document.getElementById("site-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) {
+        header.classList.add("nav-scrolled");
+      } else {
+        header.classList.remove("nav-scrolled");
+      }
+    });
+
+    // Reveal-on-scroll animations
     const revealEls = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("reveal-visible");
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.18 }
     );
-    revealEls.forEach((el) => observer.observe(el));
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+    // Active nav link based on scroll
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section[id]");
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.forEach((link) => {
+              const href = link.getAttribute("href");
+              if (href === `#${id}`) {
+                link.classList.add("nav-link--active");
+              } else {
+                link.classList.remove("nav-link--active");
+              }
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.4
+      }
+    );
+
+    sections.forEach((sec) => sectionObserver.observe(sec));
+
+    // Set initial active state to About once page loads and you're near top
+    window.addEventListener("load", () => {
+      if (window.scrollY < 120) {
+        const aboutLink = document.querySelector('.nav-link[href="#about"]');
+        if (aboutLink) aboutLink.classList.add("nav-link--active");
+      }
+    });
   </script>
 </body>
 </html>
