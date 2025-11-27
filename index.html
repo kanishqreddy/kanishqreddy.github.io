@@ -87,7 +87,7 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
-    /* =============== NAVBAR ================= */
+    /* =============== NAVBAR (NEW LAYOUT + ICONS) ================= */
     header {
       position: sticky;
       top: 0;
@@ -113,6 +113,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 18px;
     }
 
     .nav-left {
@@ -140,38 +141,63 @@
       font-weight: 500;
     }
 
+    /* pill menu */
     .nav-links {
       display: flex;
-      gap: 20px;
-      font-size: 14px;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.96),
+        rgba(10, 10, 18, 0.96)
+      );
+      box-shadow: 0 10px 28px rgba(0,0,0,0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
     }
 
-    .nav-links a {
+    .nav-link {
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
       color: var(--text-muted);
-      padding-bottom: 2px;
-      transition: color 0.15s ease;
+      overflow: hidden;
+      isolation: isolate;
     }
 
-    .nav-links a::after {
+    .nav-link span.nav-icon {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .nav-link span.nav-label {
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .nav-link::before {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 2px;
-      width: 100%;
-      background: linear-gradient(90deg, #ff6f8a, #ff3355);
-      transform-origin: left;
-      transform: scaleX(0);
-      transition: transform 0.18s ease-out;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255, 51, 85, 0.4), transparent 70%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.18s ease-out;
     }
 
-    .nav-links a:hover {
-      color: var(--text-main);
+    .nav-link:hover {
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 51, 85, 0.4);
+      background: rgba(255, 51, 85, 0.12);
     }
 
-    .nav-links a:hover::after {
-      transform: scaleX(1);
+    .nav-link:hover::before {
+      opacity: 1;
     }
 
     /* =============== HERO ================= */
@@ -399,7 +425,6 @@
       transform: translateY(0);
     }
 
-    /* — small stagger for children in grids — */
     .reveal .card {
       opacity: 0;
       transform: translateY(16px);
@@ -454,11 +479,26 @@
         <div class="nav-name">Kanishq Reddy</div>
       </div>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+        <a class="nav-link" href="#about">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">About</span>
+        </a>
+        <a class="nav-link" href="#projects">
+          <span class="nav-icon">📂</span>
+          <span class="nav-label">Projects</span>
+        </a>
+        <a class="nav-link" href="#skills">
+          <span class="nav-icon">🧰</span>
+          <span class="nav-label">Skills</span>
+        </a>
+        <a class="nav-link" href="#education">
+          <span class="nav-icon">🎓</span>
+          <span class="nav-label">Education</span>
+        </a>
+        <a class="nav-link" href="#contact">
+          <span class="nav-icon">✉️</span>
+          <span class="nav-label">Contact</span>
+        </a>
       </div>
     </nav>
   </header>
@@ -472,7 +512,7 @@
             <div class="hero-avatar">KR</div>
             <div class="hero-kicker">Business Analytics &amp; Data</div>
           </div>
-          <h1 class="hero-title">Hi, I'm Kanishq Reddy 👋</h1>
+          <h1 class="hero-title">Hi, I'm Kanishq Reddy </h1>
           <p class="hero-subtitle">
             Business Analytics graduate with hands-on experience in automation, data
             analysis, and cloud reporting. I turn complex data into meaningful insights
