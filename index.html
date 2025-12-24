@@ -140,7 +140,7 @@
       white-space: nowrap;
     }
 
-    /* Hamburger button (hidden on desktop) */
+    /* Hamburger button (phones) */
     .nav-toggle {
       display: none;
       margin-left: auto;
@@ -177,7 +177,6 @@
     .hamburger span:nth-child(2) { top: 6px; }
     .hamburger span:nth-child(3) { top: 12px; }
 
-    /* Desktop links (default) */
     .nav-links {
       display: flex;
       align-items: center;
@@ -206,7 +205,6 @@
       white-space: nowrap;
       flex: 0 0 auto;
     }
-
     .nav-link:hover { color: #e5e7eb; transform: translateY(-1px); }
 
     .nav-link::after {
@@ -423,23 +421,36 @@
     .card small { color: var(--text-muted); }
     .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--text-muted); }
 
-    /* =============== INTERACTIVE APPS HELPERS =============== */
-    .apps-wrap { max-width: 1080px; margin: 0 auto; text-align: center; }
-    .app-block { margin: 0 auto 48px; }
-    .app-block h3 { margin-bottom: 6px; }
-    .app-block p { margin-top: 0; color: var(--text-muted); }
-
-    .app-actions {
-      margin: 12px 0 18px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
+    /* ===== Responsive iframe wrapper (MOBILE FRIENDLY) ===== */
+    .iframe-wrap{
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.6);
+      background: #0b0c12;
+      margin-bottom: 50px;
+    }
+    .iframe-wrap iframe{
+      width: 100%;
+      height: 70vh;
+      min-height: 520px;
+      border: 0;
+      display: block;
+      background: #0b0c12;
     }
 
-    /* On desktop: show iframes, hide "Open app" buttons */
-    @media (min-width: 769px) {
-      .app-actions { display: none; }
+    @media (max-width: 768px){
+      .iframe-wrap iframe{
+        height: 78vh;
+        min-height: 560px;
+      }
+      /* Streamlit: scale to fit better on mobile */
+      .iframe-wrap--streamlit iframe{
+        width: 120%;
+        height: 120%;
+        transform: scale(0.83);
+        transform-origin: 0 0;
+      }
     }
 
     /* =============== CONTACT =============== */
@@ -468,30 +479,13 @@
     /* =============== SECTION OVERRIDES ================= */
     #about { margin-top: 90px; }
 
-    /* =============== IFRAME (DESKTOP/TABLET) =============== */
-    iframe {
-      width: 100%;
-      max-width: 100%;
-      height: 70vh;
-      min-height: 520px;
-      border: none;
-      border-radius: 16px;
-      display: block;
-      background: #0b0c12;
-    }
-
     @media (max-width: 768px) {
       main { padding: 0 14px 56px; }
       .nav { padding-inline: 14px; gap: 10px; }
       .nav-link::after { display: none; }
-
       .hero { grid-template-columns: 1fr; }
       .hero-top-row { gap: 10px; }
       .hero-avatar { width: 46px; height: 46px; font-size: 20px; }
-
-      /* apps: hide iframes on mobile */
-      iframe { display: none; }
-      .app-actions { display: flex; }
     }
 
     /* ===== HAMBURGER MENU (PHONES) ===== */
@@ -518,22 +512,20 @@
         transform: translateY(-50%);
       }
 
-      /* hide pills scroller on phones and use dropdown instead */
+      /* Hide scroller pills on phones -> dropdown */
       .nav-links {
         width: 100%;
         overflow: visible;
         padding: 10px;
         border-radius: 16px;
-        display: none;            /* CLOSED by default */
+        display: none; /* closed by default */
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
       }
 
-      /* Open state */
       header.nav-open .nav-links { display: flex; }
 
-      /* animate hamburger to X when open */
       header.nav-open .hamburger span:nth-child(1) { top: 6px; transform: rotate(45deg); }
       header.nav-open .hamburger span:nth-child(2) { opacity: 0; }
       header.nav-open .hamburger span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
@@ -752,39 +744,41 @@
       <h2 class="section-heading">Interactive Applications</h2>
       <p class="section-sub">Explore my live dashboards and applications.</p>
 
-      <div class="apps-wrap">
-        <div class="app-block">
-          <h3>📊 Streamlit Dashboard (Under testing)</h3>
-          <p>Real-time analytics dashboard built using Python &amp; Streamlit.</p>
+      <div style="max-width: 1080px; margin: auto; text-align: center;">
 
-          <div class="app-actions">
-            <a class="btn-primary" href="https://streamlitapps-xnyn.onrender.com" target="_blank" rel="noreferrer">Open Dashboard</a>
-          </div>
-
-          <iframe src="https://streamlitapps-xnyn.onrender.com" title="Streamlit Dashboard"></iframe>
+        <h3>📊 Streamlit Dashboard (Under testing)</h3>
+        <p>Real-time analytics dashboard built using Python &amp; Streamlit.</p>
+        <div class="iframe-wrap iframe-wrap--streamlit">
+          <iframe
+            src="https://streamlitapps-xnyn.onrender.com/?embed=true"
+            title="Streamlit Dashboard"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+          </iframe>
         </div>
 
-        <div class="app-block">
-          <h3>🔐 Web Application (Login + Dashboard + Payments) (Under testing)</h3>
-          <p>Interactive web application with secure authentication and Stripe payment.</p>
-
-          <div class="app-actions">
-            <a class="btn-primary" href="https://next-app-ruddy-psi.vercel.app" target="_blank" rel="noreferrer">Open Web App</a>
-          </div>
-
-          <iframe src="https://next-app-ruddy-psi.vercel.app" title="Web Application"></iframe>
+        <h3>🔐 Web Application (Login + Dashboard + Payments) (Under testing)</h3>
+        <p>Interactive web application with secure authentication and Stripe payment.</p>
+        <div class="iframe-wrap">
+          <iframe
+            src="https://next-app-ruddy-psi.vercel.app"
+            title="Web Application"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+          </iframe>
         </div>
 
-        <div class="app-block">
-          <h3>🤖 ChatBot (Under testing)</h3>
-          <p>Interactive Chat Bot which answers any question related to the website.</p>
-
-          <div class="app-actions">
-            <a class="btn-primary" href="https://chatbot-5xia.onrender.com" target="_blank" rel="noreferrer">Open ChatBot</a>
-          </div>
-
-          <iframe src="https://chatbot-5xia.onrender.com" title="ChatBot"></iframe>
+        <h3 style="margin-top:20px;">🤖 ChatBot (Under testing)</h3>
+        <p>Interactive Chat Bot which answers any question related to the website</p>
+        <div class="iframe-wrap" style="margin-bottom:0;">
+          <iframe
+            src="https://chatbot-5xia.onrender.com"
+            title="ChatBot"
+            loading="lazy"
+            referrerpolicy="no-referrer">
+          </iframe>
         </div>
+
       </div>
     </section>
 
