@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#050507" />
 
   <style>
+    /* =============== THEME: DARK + RED (PROFESSIONAL) =============== */
     :root {
       --bg: #050507;
       --bg-elevated: #0b0c12;
@@ -45,10 +46,12 @@
       outline-offset: 3px;
     }
 
+    /* =============== REDUCED MOTION =============== */
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
 
+    /* subtle top glow */
     .top-glow {
       position: fixed;
       top: 0;
@@ -61,6 +64,7 @@
       z-index: -1;
     }
 
+    /* subtle animated background glow */
     .aurora {
       position: fixed;
       inset: -40vh -20vw auto;
@@ -80,6 +84,7 @@
       100% { transform: translate3d(6vw, 3vh,0) scale(1.05); }
     }
 
+    /* =============== NAVBAR =============== */
     header {
       position: sticky;
       top: 0;
@@ -135,6 +140,7 @@
       white-space: nowrap;
     }
 
+    /* Hamburger button (phones) */
     .nav-toggle {
       display: none;
       margin-left: auto;
@@ -242,6 +248,7 @@
       box-shadow: 0 0 0 1px rgba(244, 67, 92, 0.4);
     }
 
+    /* =============== LAYOUT =============== */
     main {
       max-width: 1080px;
       margin: 0 auto;
@@ -263,6 +270,7 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
+    /* =============== HERO ================= */
     .hero-wrapper { position: relative; margin-top: 60px; margin-bottom: 50px; }
 
     .hero-wrapper::before {
@@ -379,6 +387,7 @@
     }
     .tag:hover { transform: translateY(-1px); box-shadow: 0 10px 18px rgba(0,0,0,0.55); background: rgba(244, 67, 92, 0.26); }
 
+    /* =============== CARDS =============== */
     .card {
       background: var(--card);
       border-radius: var(--radius-card);
@@ -412,7 +421,7 @@
     .card small { color: var(--text-muted); }
     .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--text-muted); }
 
-    /* ===== Responsive iframe wrapper ===== */
+    /* ===== Responsive iframe wrapper (MOBILE FRIENDLY) ===== */
     .iframe-wrap{
       border-radius: 16px;
       overflow: hidden;
@@ -435,6 +444,7 @@
         height: 78vh;
         min-height: 560px;
       }
+      /* Streamlit: scale to fit better on mobile */
       .iframe-wrap--streamlit iframe{
         width: 120%;
         height: 120%;
@@ -443,6 +453,7 @@
       }
     }
 
+    /* =============== CONTACT =============== */
     .contact-row {
       display: flex;
       justify-content: space-between;
@@ -465,6 +476,7 @@
       background: #050507;
     }
 
+    /* =============== SECTION OVERRIDES ================= */
     #about { margin-top: 90px; }
 
     @media (max-width: 768px) {
@@ -476,6 +488,7 @@
       .hero-avatar { width: 46px; height: 46px; font-size: 20px; }
     }
 
+    /* ===== HAMBURGER MENU (PHONES) ===== */
     @media (max-width: 520px) {
       .nav {
         flex-wrap: wrap;
@@ -499,12 +512,13 @@
         transform: translateY(-50%);
       }
 
+      /* Hide scroller pills on phones -> dropdown */
       .nav-links {
         width: 100%;
         overflow: visible;
         padding: 10px;
         border-radius: 16px;
-        display: none;
+        display: none; /* closed by default */
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
@@ -550,6 +564,7 @@
         <div class="nav-logo">K</div>
         <div class="nav-name">Kanishq Reddy</div>
 
+        <!-- HAMBURGER (shows only on phones) -->
         <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
           <span class="hamburger" aria-hidden="true">
             <span></span><span></span><span></span>
@@ -558,17 +573,36 @@
       </div>
 
       <div class="nav-links" id="nav-links">
-        <a class="nav-link" href="#about"><span class="nav-bullet nav-bullet--about"></span><span>About</span></a>
-        <a class="nav-link" href="#projects"><span class="nav-bullet nav-bullet--projects"></span><span>Projects</span></a>
-        <a class="nav-link" href="#interactive-apps"><span class="nav-bullet nav-bullet--projects"></span><span>Applications</span></a>
-        <a class="nav-link" href="#skills"><span class="nav-bullet nav-bullet--skills"></span><span>Skills</span></a>
-        <a class="nav-link" href="#education"><span class="nav-bullet nav-bullet--education"></span><span>Education</span></a>
-        <a class="nav-link" href="#contact"><span class="nav-bullet nav-bullet--contact"></span><span>Contact</span></a>
+        <a class="nav-link" href="#about">
+          <span class="nav-bullet nav-bullet--about"></span>
+          <span>About</span>
+        </a>
+        <a class="nav-link" href="#projects">
+          <span class="nav-bullet nav-bullet--projects"></span>
+          <span>Projects</span>
+        </a>
+        <a class="nav-link" href="#interactive-apps">
+          <span class="nav-bullet nav-bullet--projects"></span>
+          <span>Applications</span>
+        </a>
+        <a class="nav-link" href="#skills">
+          <span class="nav-bullet nav-bullet--skills"></span>
+          <span>Skills</span>
+        </a>
+        <a class="nav-link" href="#education">
+          <span class="nav-bullet nav-bullet--education"></span>
+          <span>Education</span>
+        </a>
+        <a class="nav-link" href="#contact">
+          <span class="nav-bullet nav-bullet--contact"></span>
+          <span>Contact</span>
+        </a>
       </div>
     </nav>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero-wrapper" id="hero">
       <div class="hero">
         <div>
@@ -604,6 +638,7 @@
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
       <h2 class="section-heading">About Me</h2>
       <p class="section-sub">A bit about my background and interests.</p>
@@ -623,6 +658,7 @@
       </p>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
       <h2 class="section-heading">Projects &amp; Experience</h2>
       <p class="section-sub">A selection of professional and academic work.</p>
@@ -631,37 +667,57 @@
         <div class="card">
           <h3>Automation &amp; App for Server Reports</h3>
           <small>Bharath Cloud Ltd • 2024–2025</small>
-          <p>Built an automation pipeline and internal application for generating and visualizing server reports for a data centre.</p>
+          <p>
+            Built an automation pipeline and internal application for generating and visualizing
+            server reports for a data centre.
+          </p>
           <ul>
             <li>Automated extraction and transformation of high-volume server data using Python and SQL.</li>
             <li>Developed a reporting app to fetch, filter, and visualize server performance metrics.</li>
             <li>Created reusable scripts and scheduled workflows to reduce manual reporting effort.</li>
           </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Automation</span></div>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Automation</span>
+          </div>
         </div>
 
         <div class="card">
           <h3>Cloud Usage Dashboards</h3>
           <small>CtrlS Pvt Ltd • 2022–2023</small>
-          <p>Data analyst role focused on infrastructure and cloud usage metrics to support operational decision-making.</p>
+          <p>
+            Data analyst role focused on infrastructure and cloud usage metrics to support
+            operational decision-making.
+          </p>
           <ul>
             <li>Designed SQL-based dashboards and automated reports for uptime, utilization, and SLA performance.</li>
             <li>Improved data quality using Python preprocessing and validation scripts.</li>
             <li>Collaborated with cross-functional teams to deliver timely insights.</li>
           </ul>
-          <div class="tag-row"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Reporting</span></div>
+          <div class="tag-row">
+            <span class="tag">SQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">Reporting</span>
+          </div>
         </div>
 
         <div class="card">
           <h3>Automation Testing Framework</h3>
           <small>ADP • 2021–2022</small>
-          <p>Automation engineer responsible for building automated test suites for HR &amp; payroll workflows.</p>
+          <p>
+            Automation engineer responsible for building automated test suites for HR &amp; payroll workflows.
+          </p>
           <ul>
             <li>Developed automation scripts using Python and Selenium.</li>
             <li>Reduced manual testing effort by converting repetitive test cases into automated suites.</li>
             <li>Documented scenarios, bugs, and flows to support continuous integration.</li>
           </ul>
-          <div class="tag-row"><span class="tag">Selenium</span><span class="tag">Python</span><span class="tag">QA Automation</span></div>
+          <div class="tag-row">
+            <span class="tag">Selenium</span>
+            <span class="tag">Python</span>
+            <span class="tag">QA Automation</span>
+          </div>
         </div>
 
         <div class="card">
@@ -674,16 +730,22 @@
             <li>Image colorization using deep learning in Python.</li>
             <li>Data warehouse design, queue optimization models, and NoSQL e-commerce database.</li>
           </ul>
-          <div class="tag-row"><span class="tag">Python</span><span class="tag">R</span><span class="tag">ML</span></div>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">R</span>
+            <span class="tag">ML</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- INTERACTIVE APPS -->
     <section id="interactive-apps">
       <h2 class="section-heading">Interactive Applications</h2>
       <p class="section-sub">Explore my live dashboards and applications.</p>
 
       <div style="max-width: 1080px; margin: auto; text-align: center;">
+
         <h3>📊 Streamlit Dashboard (Under testing)</h3>
         <p>Real-time analytics dashboard built using Python &amp; Streamlit.</p>
         <div class="iframe-wrap iframe-wrap--streamlit">
@@ -691,8 +753,7 @@
             src="https://streamlitapps-xnyn.onrender.com/?embed=true"
             title="Streamlit Dashboard"
             loading="lazy"
-            referrerpolicy="no-referrer"
-            tabindex="-1">
+            referrerpolicy="no-referrer">
           </iframe>
         </div>
 
@@ -703,8 +764,7 @@
             src="https://next-app-ruddy-psi.vercel.app"
             title="Web Application"
             loading="lazy"
-            referrerpolicy="no-referrer"
-            tabindex="-1">
+            referrerpolicy="no-referrer">
           </iframe>
         </div>
 
@@ -715,13 +775,14 @@
             src="https://chatbot-5xia.onrender.com"
             title="ChatBot"
             loading="lazy"
-            referrerpolicy="no-referrer"
-            tabindex="-1">
+            referrerpolicy="no-referrer">
           </iframe>
         </div>
+
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
       <h2 class="section-heading">Skills &amp; Tools</h2>
       <p class="section-sub">Technologies and areas I work with.</p>
@@ -730,21 +791,33 @@
         <div class="card">
           <h3>Languages</h3>
           <div class="tag-row">
-            <span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">R (Academic)</span>
+            <span class="tag">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
+            <span class="tag">R (Academic)</span>
           </div>
         </div>
 
         <div class="card">
           <h3>Tools &amp; Platforms</h3>
           <div class="tag-row">
-            <span class="tag">QlikSense</span><span class="tag">Selenium</span><span class="tag">Streamlit</span><span class="tag">GitHub</span><span class="tag">Excel</span><span class="tag">PowerPoint</span>
+            <span class="tag">QlikSense</span>
+            <span class="tag">Selenium</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Excel</span>
+            <span class="tag">PowerPoint</span>
           </div>
         </div>
 
         <div class="card">
           <h3>Areas of Expertise</h3>
           <div class="tag-row">
-            <span class="tag">Automation</span><span class="tag">ETL &amp; Pipelines</span><span class="tag">Dashboarding</span><span class="tag">Cloud Reporting</span><span class="tag">Analytics Workflows</span>
+            <span class="tag">Automation</span>
+            <span class="tag">ETL &amp; Pipelines</span>
+            <span class="tag">Dashboarding</span>
+            <span class="tag">Cloud Reporting</span>
+            <span class="tag">Analytics Workflows</span>
           </div>
         </div>
 
@@ -761,6 +834,7 @@
       </div>
     </section>
 
+    <!-- EDUCATION -->
     <section id="education">
       <h2 class="section-heading">Education</h2>
       <p class="section-sub">Academic background.</p>
@@ -768,15 +842,16 @@
       <div class="grid">
         <div class="card">
           <h3>Master of Business Analytics (MSBA)</h3>
-          <p>Macquarie University, Sydney (Australia)</p>
+          <p>Macquarie University, Sydney, Australia</p>
         </div>
         <div class="card">
           <h3>Bachelor of Data Science (BDS)</h3>
-          <p>S P Jain School of Global Management, Sydney (Australia)</p>
+          <p>S P Jain School of Global Management, Sydney, Australia</p>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
       <h2 class="section-heading">Get in Touch</h2>
       <p class="section-sub">Open to roles in data, analytics, and automation.</p>
@@ -800,35 +875,6 @@
   </footer>
 
   <script>
-    // ✅ Stop auto-jump/auto-scroll on first visit (mobile friendly)
-    (() => {
-      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-
-      const KEY = "kr_first_visit_done";
-
-      function forceTopIfNoHash() {
-        if (location.hash) return;
-        if (sessionStorage.getItem(KEY)) return;
-
-        sessionStorage.setItem(KEY, "1");
-
-        window.scrollTo(0, 0);
-        requestAnimationFrame(() => window.scrollTo(0, 0));
-        setTimeout(() => window.scrollTo(0, 0), 60);
-        setTimeout(() => window.scrollTo(0, 0), 220);
-
-        if (document.activeElement && document.activeElement.blur) {
-          document.activeElement.blur();
-        }
-      }
-
-      window.addEventListener("load", forceTopIfNoHash);
-
-      window.addEventListener("pageshow", (e) => {
-        if (e.persisted) forceTopIfNoHash();
-      });
-    })();
-
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -854,19 +900,23 @@
       setMenu(open);
     });
 
+    // Close menu when a link is clicked (phones)
     navLinksWrap.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => setMenu(false));
     });
 
+    // Close on Escape
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setMenu(false);
     });
 
+    // Close if you tap outside the menu (phones)
     document.addEventListener("click", (e) => {
       const clickedInsideHeader = header.contains(e.target);
       if (!clickedInsideHeader) setMenu(false);
     });
 
+    // Ensure correct state when resizing between desktop <-> phone
     window.addEventListener("resize", () => {
       if (window.innerWidth > 520) setMenu(false);
     });
@@ -892,6 +942,7 @@
     );
     sections.forEach((sec) => sectionObserver.observe(sec));
 
+    // Initial active state near top
     window.addEventListener("load", () => {
       if (window.scrollY < 120) {
         const aboutLink = document.querySelector('.nav-link[href="#about"]');
@@ -899,7 +950,7 @@
       }
     });
 
-    // Card glow follow
+    // Card glow follow (very light)
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
