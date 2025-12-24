@@ -29,6 +29,9 @@
 
     html { scroll-behavior: smooth; }
 
+    /* prevent horizontal scroll on mobile */
+    html, body { overflow-x: hidden; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -64,7 +67,7 @@
       z-index: -1;
     }
 
-    /* subtle animated background glow (same theme, just motion) */
+    /* subtle animated background glow */
     .aurora {
       position: fixed;
       inset: -40vh -20vw auto;
@@ -149,11 +152,11 @@
       background: radial-gradient(circle at top, #0b1120, #020617);
       box-shadow: 0 8px 20px rgba(0,0,0,0.9);
       border: 1px solid rgba(148, 163, 184, 0.25);
-      overflow-x: auto;            /* mobile friendly */
+      overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;       /* firefox */
+      scrollbar-width: none;
     }
-    .nav-links::-webkit-scrollbar { display: none; } /* chrome */
+    .nav-links::-webkit-scrollbar { display: none; }
 
     .nav-link {
       position: relative;
@@ -165,7 +168,7 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: color 0.18s ease, transform 0.18s ease;
-      white-space: nowrap;         /* mobile friendly */
+      white-space: nowrap;
       flex: 0 0 auto;
     }
 
@@ -226,7 +229,7 @@
     section {
       margin-top: var(--space-section);
       scroll-margin-top: 96px;
-      min-height: 1px; /* helps IntersectionObserver with big embedded content */
+      min-height: 1px;
     }
 
     .section-heading {
@@ -428,7 +431,7 @@
       box-shadow: 0 14px 26px rgba(0,0,0,0.8);
     }
 
-    /* glow follow (no color change, only accent glow) */
+    /* glow follow */
     .card::before {
       content: "";
       position: absolute;
@@ -468,19 +471,6 @@
       background: #050507;
     }
 
-    /* =============== REVEAL ANIMATIONS (FIXED) =============== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-      will-change: opacity, transform;
-    }
-
-    .reveal-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* =============== SECTION OVERRIDES ================= */
     #about { margin-top: 90px; }
 
@@ -488,8 +478,8 @@
     iframe {
       width: 100%;
       max-width: 100%;
-      height: 70vh;        /* responsive */
-      min-height: 520px;   /* keeps desktop nice */
+      height: 70vh;
+      min-height: 520px;
       border: none;
       border-radius: 16px;
       display: block;
@@ -503,7 +493,62 @@
       .hero { grid-template-columns: 1fr; }
       .hero-top-row { gap: 10px; }
       .hero-avatar { width: 46px; height: 46px; font-size: 20px; }
-      iframe { height: 500px; min-height: 500px; } /* mobile */
+      iframe { height: 500px; min-height: 500px; }
+    }
+
+    /* ===== EXTRA MOBILE FIXES (phones) ===== */
+    @media (max-width: 520px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 12px;
+      }
+
+      .nav-left {
+        min-width: unset;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .nav-name { font-size: 14px; }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 6px 10px;
+        gap: 14px;
+      }
+
+      .hero-wrapper { margin-top: 28px; margin-bottom: 28px; }
+
+      .hero-title { font-size: 30px; line-height: 1.1; }
+      .hero-subtitle { font-size: 14px; }
+
+      .hero-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        padding: 11px 14px;
+        font-size: 14px;
+      }
+
+      .hero-card { padding: 16px; }
+
+      iframe {
+        height: 420px;
+        min-height: 420px;
+        border-radius: 14px;
+      }
+
+      section { margin-top: 52px; }
+
+      #about { margin-top: 56px; }
     }
   </style>
 </head>
@@ -549,7 +594,7 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero-wrapper reveal" id="hero">
+    <section class="hero-wrapper" id="hero">
       <div class="hero">
         <div>
           <div class="hero-top-row">
@@ -585,7 +630,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="reveal">
+    <section id="about">
       <h2 class="section-heading">About Me</h2>
       <p class="section-sub">A bit about my background and interests.</p>
       <p>
@@ -605,7 +650,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="reveal">
+    <section id="projects">
       <h2 class="section-heading">Projects &amp; Experience</h2>
       <p class="section-sub">A selection of professional and academic work.</p>
 
@@ -686,7 +731,7 @@
     </section>
 
     <!-- INTERACTIVE APPS -->
-    <section id="interactive-apps" class="reveal">
+    <section id="interactive-apps">
       <h2 class="section-heading">Interactive Applications</h2>
       <p class="section-sub">Explore my live dashboards and applications.</p>
 
@@ -715,7 +760,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="reveal">
+    <section id="skills">
       <h2 class="section-heading">Skills &amp; Tools</h2>
       <p class="section-sub">Technologies and areas I work with.</p>
 
@@ -767,7 +812,7 @@
     </section>
 
     <!-- EDUCATION -->
-    <section id="education" class="reveal">
+    <section id="education">
       <h2 class="section-heading">Education</h2>
       <p class="section-sub">Academic background.</p>
 
@@ -784,7 +829,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="reveal">
+    <section id="contact">
       <h2 class="section-heading">Get in Touch</h2>
       <p class="section-sub">Open to roles in data, analytics, and automation.</p>
 
@@ -820,26 +865,6 @@
       if (window.scrollY > 10) header.classList.add("nav-scrolled");
       else header.classList.remove("nav-scrolled");
     });
-
-    // Reveal-on-scroll animations (FIXED for big sections like iframes)
-    // Problem: threshold 0.18 can delay reveal for very tall sections (iframes),
-    // so we use a very low threshold + rootMargin to trigger earlier.
-    const revealEls = document.querySelectorAll(".reveal");
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.01,
-        rootMargin: "0px 0px -15% 0px"
-      }
-    );
-    revealEls.forEach((el) => revealObserver.observe(el));
 
     // Active nav link based on scroll
     const navLinks = document.querySelectorAll(".nav-link");
