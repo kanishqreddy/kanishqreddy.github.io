@@ -26,10 +26,7 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
-    /* prevent horizontal scroll on mobile */
     html, body { overflow-x: hidden; }
 
     body {
@@ -87,7 +84,7 @@
       100% { transform: translate3d(6vw, 3vh,0) scale(1.05); }
     }
 
-    /* =============== NAVBAR (CLEAN + BULLETS) =============== */
+    /* =============== NAVBAR =============== */
     header {
       position: sticky;
       top: 0;
@@ -143,6 +140,44 @@
       white-space: nowrap;
     }
 
+    /* Hamburger button (hidden on desktop) */
+    .nav-toggle {
+      display: none;
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor: pointer;
+      line-height: 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.65);
+    }
+    .nav-toggle:hover {
+      background: rgba(244, 67, 92, 0.18);
+      border-color: rgba(244, 67, 92, 0.6);
+      color: #fff;
+    }
+    .hamburger {
+      width: 20px;
+      height: 14px;
+      position: relative;
+      display: inline-block;
+    }
+    .hamburger span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.85);
+      transition: transform 180ms ease, top 180ms ease, opacity 180ms ease;
+    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 6px; }
+    .hamburger span:nth-child(3) { top: 12px; }
+
+    /* Desktop links (default) */
     .nav-links {
       display: flex;
       align-items: center;
@@ -172,10 +207,7 @@
       flex: 0 0 auto;
     }
 
-    .nav-link:hover {
-      color: #e5e7eb;
-      transform: translateY(-1px);
-    }
+    .nav-link:hover { color: #e5e7eb; transform: translateY(-1px); }
 
     .nav-link::after {
       content: "";
@@ -195,7 +227,6 @@
     .nav-link--active { color: #f9fafb; font-weight: 500; }
     .nav-link--active::after { opacity: 1; transform: scaleX(1); }
 
-    /* geometric bullets */
     .nav-bullet {
       width: 7px;
       height: 7px;
@@ -232,17 +263,8 @@
       min-height: 1px;
     }
 
-    .section-heading {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .section-sub {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
+    .section-heading { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    .section-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
 
     .grid {
       display: grid;
@@ -251,11 +273,7 @@
     }
 
     /* =============== HERO ================= */
-    .hero-wrapper {
-      position: relative;
-      margin-top: 60px;
-      margin-bottom: 50px;
-    }
+    .hero-wrapper { position: relative; margin-top: 60px; margin-bottom: 50px; }
 
     .hero-wrapper::before {
       content: "";
@@ -273,12 +291,7 @@
       align-items: flex-start;
     }
 
-    .hero-top-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
+    .hero-top-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 
     .hero-avatar {
       width: 52px;
@@ -309,11 +322,7 @@
       white-space: nowrap;
     }
 
-    .hero-title {
-      font-size: clamp(32px, 4vw, 40px);
-      font-weight: 700;
-      margin: 0 0 10px;
-    }
+    .hero-title { font-size: clamp(32px, 4vw, 40px); font-weight: 700; margin: 0 0 10px; }
 
     .hero-subtitle {
       font-size: 15px;
@@ -322,12 +331,7 @@
       line-height: 1.7;
     }
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
 
     .btn-primary,
     .btn-ghost {
@@ -349,23 +353,14 @@
       color: white;
       box-shadow: 0 6px 14px rgba(0,0,0,0.6);
     }
-
-    .btn-primary:hover {
-      box-shadow: 0 9px 20px rgba(0,0,0,0.75);
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { box-shadow: 0 9px 20px rgba(0,0,0,0.75); transform: translateY(-1px); }
 
     .btn-ghost {
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(255, 255, 255, 0.14);
       color: #e2e8f0;
     }
-
-    .btn-ghost:hover {
-      background: rgba(244, 67, 92, 0.18);
-      border-color: #f4435c;
-      color: #fff;
-    }
+    .btn-ghost:hover { background: rgba(244, 67, 92, 0.18); border-color: #f4435c; color: #fff; }
 
     .btn-primary:active,
     .btn-ghost:active { transform: translateY(0px) scale(0.98); }
@@ -378,24 +373,10 @@
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
     }
 
-    .hero-card h3 {
-      margin-top: 0;
-      margin-bottom: 4px;
-      font-size: 16px;
-    }
+    .hero-card h3 { margin-top: 0; margin-bottom: 4px; font-size: 16px; }
+    .hero-card p { margin: 0 0 10px; font-size: 14px; color: var(--text-muted); }
 
-    .hero-card p {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 
     .tag {
       padding: 4px 8px;
@@ -406,12 +387,7 @@
       white-space: nowrap;
       transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
     }
-
-    .tag:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(0,0,0,0.55);
-      background: rgba(244, 67, 92, 0.26);
-    }
+    .tag:hover { transform: translateY(-1px); box-shadow: 0 10px 18px rgba(0,0,0,0.55); background: rgba(244, 67, 92, 0.26); }
 
     /* =============== CARDS =============== */
     .card {
@@ -431,7 +407,6 @@
       box-shadow: 0 14px 26px rgba(0,0,0,0.8);
     }
 
-    /* glow follow */
     .card::before {
       content: "";
       position: absolute;
@@ -447,6 +422,25 @@
     .card p { font-size: 14px; line-height: 1.6; margin: 4px 0; }
     .card small { color: var(--text-muted); }
     .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--text-muted); }
+
+    /* =============== INTERACTIVE APPS HELPERS =============== */
+    .apps-wrap { max-width: 1080px; margin: 0 auto; text-align: center; }
+    .app-block { margin: 0 auto 48px; }
+    .app-block h3 { margin-bottom: 6px; }
+    .app-block p { margin-top: 0; color: var(--text-muted); }
+
+    .app-actions {
+      margin: 12px 0 18px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* On desktop: show iframes, hide "Open app" buttons */
+    @media (min-width: 769px) {
+      .app-actions { display: none; }
+    }
 
     /* =============== CONTACT =============== */
     .contact-row {
@@ -474,7 +468,7 @@
     /* =============== SECTION OVERRIDES ================= */
     #about { margin-top: 90px; }
 
-    /* =============== IFRAME (MOBILE FRIENDLY) =============== */
+    /* =============== IFRAME (DESKTOP/TABLET) =============== */
     iframe {
       width: 100%;
       max-width: 100%;
@@ -483,20 +477,24 @@
       border: none;
       border-radius: 16px;
       display: block;
+      background: #0b0c12;
     }
 
     @media (max-width: 768px) {
       main { padding: 0 14px 56px; }
       .nav { padding-inline: 14px; gap: 10px; }
-      .nav-links { padding: 4px 10px; gap: 12px; }
       .nav-link::after { display: none; }
+
       .hero { grid-template-columns: 1fr; }
       .hero-top-row { gap: 10px; }
       .hero-avatar { width: 46px; height: 46px; font-size: 20px; }
-      iframe { height: 500px; min-height: 500px; }
+
+      /* apps: hide iframes on mobile */
+      iframe { display: none; }
+      .app-actions { display: flex; }
     }
 
-    /* ===== EXTRA MOBILE FIXES (phones) ===== */
+    /* ===== HAMBURGER MENU (PHONES) ===== */
     @media (max-width: 520px) {
       .nav {
         flex-wrap: wrap;
@@ -509,19 +507,38 @@
         min-width: unset;
         width: 100%;
         justify-content: center;
+        position: relative;
       }
 
-      .nav-name { font-size: 14px; }
+      .nav-toggle {
+        display: inline-flex;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
+      /* hide pills scroller on phones and use dropdown instead */
       .nav-links {
         width: 100%;
-        justify-content: flex-start;
-        padding: 6px 10px;
+        overflow: visible;
+        padding: 10px;
+        border-radius: 16px;
+        display: none;            /* CLOSED by default */
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 14px;
       }
 
-      .hero-wrapper { margin-top: 28px; margin-bottom: 28px; }
+      /* Open state */
+      header.nav-open .nav-links { display: flex; }
 
+      /* animate hamburger to X when open */
+      header.nav-open .hamburger span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+      header.nav-open .hamburger span:nth-child(2) { opacity: 0; }
+      header.nav-open .hamburger span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+      .hero-wrapper { margin-top: 28px; margin-bottom: 28px; }
       .hero-title { font-size: 30px; line-height: 1.1; }
       .hero-subtitle { font-size: 14px; }
 
@@ -539,15 +556,7 @@
       }
 
       .hero-card { padding: 16px; }
-
-      iframe {
-        height: 420px;
-        min-height: 420px;
-        border-radius: 14px;
-      }
-
       section { margin-top: 52px; }
-
       #about { margin-top: 56px; }
     }
   </style>
@@ -558,12 +567,20 @@
   <div class="top-glow"></div>
 
   <header id="site-header">
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
       <div class="nav-left">
         <div class="nav-logo">K</div>
         <div class="nav-name">Kanishq Reddy</div>
+
+        <!-- HAMBURGER (shows only on phones) -->
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="hamburger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
       </div>
-      <div class="nav-links">
+
+      <div class="nav-links" id="nav-links">
         <a class="nav-link" href="#about">
           <span class="nav-bullet nav-bullet--about"></span>
           <span>About</span>
@@ -601,7 +618,7 @@
             <div class="hero-avatar">KR</div>
             <div class="hero-kicker">Business Analytics &amp; Data</div>
           </div>
-          <h1 class="hero-title">Hi, I'm Kanishq Reddy </h1>
+          <h1 class="hero-title">Hi, I'm Kanishq Reddy</h1>
           <p class="hero-subtitle">
             Business Analytics graduate with hands-on experience in automation, data
             analysis, and cloud reporting. I turn complex data into meaningful insights
@@ -735,27 +752,39 @@
       <h2 class="section-heading">Interactive Applications</h2>
       <p class="section-sub">Explore my live dashboards and applications.</p>
 
-      <div style="max-width: 1080px; margin: auto; text-align: center;">
-        <h3>📊 Streamlit Dashboard (Under testing)</h3>
-        <p>Real-time analytics dashboard built using Python & Streamlit.</p>
-        <iframe
-          src="https://streamlitapps-xnyn.onrender.com"
-          style="border:none; border-radius:16px; margin-bottom:50px;">
-        </iframe>
+      <div class="apps-wrap">
+        <div class="app-block">
+          <h3>📊 Streamlit Dashboard (Under testing)</h3>
+          <p>Real-time analytics dashboard built using Python &amp; Streamlit.</p>
 
-        <h3>🔐 Web Application (Login + Dashboard + Payments) (Under testing)</h3>
-        <p>Interactive web application with secure authentication and Stripe payment.</p>
-        <iframe
-          src="https://next-app-ruddy-psi.vercel.app"
-          style="border:none; border-radius:16px;">
-        </iframe>
+          <div class="app-actions">
+            <a class="btn-primary" href="https://streamlitapps-xnyn.onrender.com" target="_blank" rel="noreferrer">Open Dashboard</a>
+          </div>
 
-        <h3 style="margin-top:50px;">🤖 ChatBot (Under testing)</h3>
-        <p>Interactive Chat Bot which answers any question related to the website</p>
-        <iframe
-          src="https://chatbot-5xia.onrender.com"
-          style="border:none; border-radius:16px;">
-        </iframe>
+          <iframe src="https://streamlitapps-xnyn.onrender.com" title="Streamlit Dashboard"></iframe>
+        </div>
+
+        <div class="app-block">
+          <h3>🔐 Web Application (Login + Dashboard + Payments) (Under testing)</h3>
+          <p>Interactive web application with secure authentication and Stripe payment.</p>
+
+          <div class="app-actions">
+            <a class="btn-primary" href="https://next-app-ruddy-psi.vercel.app" target="_blank" rel="noreferrer">Open Web App</a>
+          </div>
+
+          <iframe src="https://next-app-ruddy-psi.vercel.app" title="Web Application"></iframe>
+        </div>
+
+        <div class="app-block">
+          <h3>🤖 ChatBot (Under testing)</h3>
+          <p>Interactive Chat Bot which answers any question related to the website.</p>
+
+          <div class="app-actions">
+            <a class="btn-primary" href="https://chatbot-5xia.onrender.com" target="_blank" rel="noreferrer">Open ChatBot</a>
+          </div>
+
+          <iframe src="https://chatbot-5xia.onrender.com" title="ChatBot"></iframe>
+        </div>
       </div>
     </section>
 
@@ -838,14 +867,10 @@
           <div>
             <div class="contact-item-label">Email</div>
             <div class="contact-item-value">
-              <a href="mailto:kanishqreddy.banda@students.mq.edu.au">
-                kansum11114192113@gmail.com
-              </a>
+              <a href="mailto:kansum11114192113@gmail.com">kansum11114192113@gmail.com</a>
             </div>
           </div>
-          <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">
-            Email me
-          </a>
+          <a class="btn-primary" href="mailto:kansum11114192113@gmail.com">Email me</a>
         </div>
       </div>
     </section>
@@ -864,6 +889,42 @@
     window.addEventListener("scroll", () => {
       if (window.scrollY > 10) header.classList.add("nav-scrolled");
       else header.classList.remove("nav-scrolled");
+    });
+
+    // Hamburger toggle (phones)
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinksWrap = document.getElementById("nav-links");
+
+    function setMenu(open) {
+      header.classList.toggle("nav-open", open);
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    navToggle.addEventListener("click", () => {
+      const open = !header.classList.contains("nav-open");
+      setMenu(open);
+    });
+
+    // Close menu when a link is clicked (phones)
+    navLinksWrap.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => setMenu(false));
+    });
+
+    // Close on Escape
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
+    });
+
+    // Close if you tap outside the menu (phones)
+    document.addEventListener("click", (e) => {
+      const clickedInsideHeader = header.contains(e.target);
+      if (!clickedInsideHeader) setMenu(false);
+    });
+
+    // Ensure correct state when resizing between desktop <-> phone
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 520) setMenu(false);
     });
 
     // Active nav link based on scroll
@@ -885,7 +946,6 @@
       },
       { threshold: 0.45 }
     );
-
     sections.forEach((sec) => sectionObserver.observe(sec));
 
     // Initial active state near top
