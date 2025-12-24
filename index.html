@@ -25,31 +25,18 @@
       --shadow-soft: 0 12px 26px rgba(0,0,0,0.6);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: linear-gradient(
-        180deg,
-        #07080d 0%,
-        #0a0b12 35%,
-        #0b0b11 70%
-      ) fixed;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #07080d 0%, #0a0b12 35%, #0b0b11 70%) fixed;
       color: var(--text-main);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     a:focus-visible,
     button:focus-visible,
@@ -57,6 +44,11 @@
     .btn-ghost:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
+    }
+
+    /* =============== REDUCED MOTION =============== */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
 
     /* subtle top glow */
@@ -67,13 +59,29 @@
       width: 1200px;
       height: 280px;
       transform: translateX(-50%);
-      background: radial-gradient(
-        circle at top,
-        rgba(244, 67, 92, 0.15),
-        transparent 70%
-      );
+      background: radial-gradient(circle at top, rgba(244, 67, 92, 0.15), transparent 70%);
       pointer-events: none;
       z-index: -1;
+    }
+
+    /* subtle animated background glow (same theme, just motion) */
+    .aurora {
+      position: fixed;
+      inset: -40vh -20vw auto;
+      height: 70vh;
+      filter: blur(40px);
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(244,67,92,0.22), transparent 55%),
+        radial-gradient(circle at 80% 30%, rgba(120,90,255,0.10), transparent 60%),
+        radial-gradient(circle at 40% 80%, rgba(244,67,92,0.12), transparent 55%);
+      animation: auroraMove 12s ease-in-out infinite alternate;
+    }
+    @keyframes auroraMove {
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(6vw, 3vh,0) scale(1.05); }
     }
 
     /* =============== NAVBAR (CLEAN + BULLETS) =============== */
@@ -85,8 +93,7 @@
       background: rgba(3,3,6,0.9);
       border-bottom: 1px solid rgba(148, 163, 184, 0.25);
       box-shadow: 0 6px 18px rgba(0,0,0,0.7);
-      transition: box-shadow 0.2s ease, border-color 0.2s ease,
-                  background 0.2s ease;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     header.nav-scrolled {
@@ -109,6 +116,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 170px;
     }
 
     .nav-logo {
@@ -123,11 +131,13 @@
       font-size: 16px;
       color: #fff;
       box-shadow: 0 0 8px rgba(244, 67, 92, 0.6);
+      flex: 0 0 auto;
     }
 
     .nav-name {
       font-size: 15px;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -139,7 +149,11 @@
       background: radial-gradient(circle at top, #0b1120, #020617);
       box-shadow: 0 8px 20px rgba(0,0,0,0.9);
       border: 1px solid rgba(148, 163, 184, 0.25);
+      overflow-x: auto;            /* mobile friendly */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;       /* firefox */
     }
+    .nav-links::-webkit-scrollbar { display: none; } /* chrome */
 
     .nav-link {
       position: relative;
@@ -151,6 +165,8 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: color 0.18s ease, transform 0.18s ease;
+      white-space: nowrap;         /* mobile friendly */
+      flex: 0 0 auto;
     }
 
     .nav-link:hover {
@@ -173,15 +189,8 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
 
-    .nav-link--active {
-      color: #f9fafb;
-      font-weight: 500;
-    }
-
-    .nav-link--active::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
+    .nav-link--active { color: #f9fafb; font-weight: 500; }
+    .nav-link--active::after { opacity: 1; transform: scaleX(1); }
 
     /* geometric bullets */
     .nav-bullet {
@@ -191,7 +200,6 @@
       background: rgba(255, 255, 255, 0.35);
       transition: background 0.25s ease, transform 0.25s ease;
     }
-
     .nav-bullet--projects { border-radius: 2px; }
     .nav-bullet--skills { border-radius: 40% 60% 50% 60%; }
     .nav-bullet--education { border-radius: 45% 45% 65% 65%; }
@@ -218,6 +226,7 @@
     section {
       margin-top: var(--space-section);
       scroll-margin-top: 96px;
+      min-height: 1px; /* helps IntersectionObserver with big embedded content */
     }
 
     .section-heading {
@@ -245,16 +254,11 @@
       margin-bottom: 50px;
     }
 
-    /* softer, professional glow */
     .hero-wrapper::before {
       content: "";
       position: absolute;
       inset: -60px -40px auto;
-      background: radial-gradient(
-        circle at top left,
-        rgba(244, 67, 92, 0.08),
-        transparent 75%
-      );
+      background: radial-gradient(circle at top left, rgba(244, 67, 92, 0.08), transparent 75%);
       z-index: -1;
       pointer-events: none;
     }
@@ -273,7 +277,6 @@
       margin-bottom: 14px;
     }
 
-    /* more professional avatar */
     .hero-avatar {
       width: 52px;
       height: 52px;
@@ -287,6 +290,7 @@
       font-size: 22px;
       color: #f4435c;
       box-shadow: 0 0 18px rgba(244, 67, 92, 0.25);
+      flex: 0 0 auto;
     }
 
     .hero-kicker {
@@ -333,8 +337,8 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: transform 0.16s ease, box-shadow 0.16s ease,
-        background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease,
+        border-color 0.16s ease, color 0.16s ease;
     }
 
     .btn-primary {
@@ -348,7 +352,6 @@
       transform: translateY(-1px);
     }
 
-    /* more visible ghost button */
     .btn-ghost {
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(255, 255, 255, 0.14);
@@ -361,7 +364,9 @@
       color: #fff;
     }
 
-    /* unified hero snapshot card */
+    .btn-primary:active,
+    .btn-ghost:active { transform: translateY(0px) scale(0.98); }
+
     .hero-card {
       background: rgba(12, 14, 21, 0.9);
       border-radius: 16px;
@@ -396,6 +401,13 @@
       background: var(--accent-soft-strong);
       color: #fecaca;
       white-space: nowrap;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.55);
+      background: rgba(244, 67, 92, 0.26);
     }
 
     /* =============== CARDS =============== */
@@ -405,8 +417,9 @@
       border: 1px solid var(--border-subtle);
       padding: 18px 20px;
       box-shadow: var(--shadow-soft);
-      transition: transform 0.16s ease, box-shadow 0.16s ease,
-                  border-color 0.16s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      position: relative;
+      overflow: hidden;
     }
 
     .card:hover {
@@ -415,27 +428,22 @@
       box-shadow: 0 14px 26px rgba(0,0,0,0.8);
     }
 
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
+    /* glow follow (no color change, only accent glow) */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(244,67,92,0.18), transparent 55%);
+      opacity: 0;
+      transition: opacity 180ms ease;
+      pointer-events: none;
     }
+    .card:hover::before { opacity: 1; }
 
-    .card p {
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 4px 0;
-    }
-
-    .card small {
-      color: var(--text-muted);
-    }
-
-    .card ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { font-size: 14px; line-height: 1.6; margin: 4px 0; }
+    .card small { color: var(--text-muted); }
+    .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 13px; color: var(--text-muted); }
 
     /* =============== CONTACT =============== */
     .contact-row {
@@ -448,14 +456,8 @@
       border-top: 1px dashed rgba(244, 67, 92, 0.25);
     }
 
-    .contact-item-label {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .contact-item-value {
-      font-size: 14px;
-    }
+    .contact-item-label { font-size: 12px; color: var(--text-muted); }
+    .contact-item-value { font-size: 14px; }
 
     footer {
       border-top: 1px solid rgba(244, 67, 92, 0.16);
@@ -466,11 +468,12 @@
       background: #050507;
     }
 
-    /* =============== REVEAL ANIMATIONS =============== */
+    /* =============== REVEAL ANIMATIONS (FIXED) =============== */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
       transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      will-change: opacity, transform;
     }
 
     .reveal-visible {
@@ -478,74 +481,35 @@
       transform: translateY(0);
     }
 
-    .reveal .card {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
-    }
-
-    .reveal-visible .card {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* =============== SECTION OVERRIDES ================= */
-    /* extra breathing room after hero before About */
-    #about {
-      margin-top: 90px;
+    #about { margin-top: 90px; }
+
+    /* =============== IFRAME (MOBILE FRIENDLY) =============== */
+    iframe {
+      width: 100%;
+      max-width: 100%;
+      height: 70vh;        /* responsive */
+      min-height: 520px;   /* keeps desktop nice */
+      border: none;
+      border-radius: 16px;
+      display: block;
     }
 
-    /* =============== RESPONSIVE ================= */
     @media (max-width: 768px) {
-      main {
-        padding: 0 14px 56px;
-      }
-
-      .nav {
-        padding-inline: 14px;
-        gap: 10px;
-      }
-
-      .nav-links {
-        padding: 4px 10px;
-        gap: 12px;
-      }
-
-      .nav-link::after {
-        display: none; /* keep mobile simpler */
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-wrapper::before {
-        inset: -60px -40px auto;
-      }
-
-      .hero-top-row {
-        gap: 10px;
-      }
-
-      .hero-avatar {
-        width: 46px;
-        height: 46px;
-        font-size: 20px;
-      }
-		iframe {
-		  width: 100%;
-  		max-width: 100%;
-  		height: 70vh;
-		}
-		@media(max-width:768px){
-  		iframe { height: 500px; }
-		}
+      main { padding: 0 14px 56px; }
+      .nav { padding-inline: 14px; gap: 10px; }
+      .nav-links { padding: 4px 10px; gap: 12px; }
+      .nav-link::after { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-top-row { gap: 10px; }
+      .hero-avatar { width: 46px; height: 46px; font-size: 20px; }
+      iframe { height: 500px; min-height: 500px; } /* mobile */
     }
   </style>
 </head>
 
 <body>
-  <!-- subtle top glow background layer -->
+  <div class="aurora"></div>
   <div class="top-glow"></div>
 
   <header id="site-header">
@@ -563,10 +527,10 @@
           <span class="nav-bullet nav-bullet--projects"></span>
           <span>Projects</span>
         </a>
-		<a class="nav-link" href="#interactive-apps">
-	       <span class="nav-bullet nav-bullet--projects"></span>
-  		   <span>Applications</span>
-		</a>
+        <a class="nav-link" href="#interactive-apps">
+          <span class="nav-bullet nav-bullet--projects"></span>
+          <span>Applications</span>
+        </a>
         <a class="nav-link" href="#skills">
           <span class="nav-bullet nav-bullet--skills"></span>
           <span>Skills</span>
@@ -599,12 +563,11 @@
             using Python, SQL, and modern tools.
           </p>
           <div class="hero-buttons">
-  			<a class="btn-primary" href="#contact">Contact me</a>
-  			<a class="btn-ghost" href="#projects">View projects</a>
-  			<a class="btn-ghost" href="#interactive-apps">Open Web Apps</a>
-  			<a class="btn-ghost" href="https://www.linkedin.com/in/kanishq-reddy-243a03148/" target="_blank">LinkedIn</a>
-		  </div>
-
+            <a class="btn-primary" href="#contact">Contact me</a>
+            <a class="btn-ghost" href="#projects">View projects</a>
+            <a class="btn-ghost" href="#interactive-apps">Open Web Apps</a>
+            <a class="btn-ghost" href="https://www.linkedin.com/in/kanishq-reddy-243a03148/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
         </div>
 
         <aside class="hero-card">
@@ -625,20 +588,20 @@
     <section id="about" class="reveal">
       <h2 class="section-heading">About Me</h2>
       <p class="section-sub">A bit about my background and interests.</p>
-        <p>
-          I'm Banda Kanishq Reddy, a Business Analytics graduate with hands-on experience
-          across automation engineering, data analysis, cloud reporting, and dashboard
-          development. I’ve worked in cloud infrastructure, HR tech, and data centre
-          environments.
-        </p>
-        <p>
-          My projects include automation pipelines, real-time reporting apps, cloud dashboards,
-          and ML-based academic work. I enjoy solving problems and improving workflows using
-          Python, SQL, QlikSense, Selenium, and analytics tools.
-		</p>
-		<p>  
-		  I’m currently open to opportunities in analytics, automation, and data-driven roles.
-        </p>
+      <p>
+        I'm Banda Kanishq Reddy, a Business Analytics graduate with hands-on experience
+        across automation engineering, data analysis, cloud reporting, and dashboard
+        development. I’ve worked in cloud infrastructure, HR tech, and data centre
+        environments.
+      </p>
+      <p>
+        My projects include automation pipelines, real-time reporting apps, cloud dashboards,
+        and ML-based academic work. I enjoy solving problems and improving workflows using
+        Python, SQL, QlikSense, Selenium, and analytics tools.
+      </p>
+      <p>
+        I’m currently open to opportunities in analytics, automation, and data-driven roles.
+      </p>
     </section>
 
     <!-- PROJECTS -->
@@ -721,39 +684,36 @@
         </div>
       </div>
     </section>
-	<section id="interactive-apps" class="reveal">
-  <h2 class="section-heading">Interactive Applications</h2>
-  <p class="section-sub">Explore my live dashboards and applications.</p>
 
-  <div style="max-width: 1080px; margin: auto; text-align: center;">
+    <!-- INTERACTIVE APPS -->
+    <section id="interactive-apps" class="reveal">
+      <h2 class="section-heading">Interactive Applications</h2>
+      <p class="section-sub">Explore my live dashboards and applications.</p>
 
-    <h3>📊 Streamlit Dashboard (Under testing)</h3>
-    <p>Real-time analytics dashboard built using Python & Streamlit.</p>
-    <iframe
-      src="https://streamlitapps-xnyn.onrender.com"
-      width="100%" height="925"
-      style="border:none; border-radius:16px; margin-bottom:50px;">
-    </iframe>
+      <div style="max-width: 1080px; margin: auto; text-align: center;">
+        <h3>📊 Streamlit Dashboard (Under testing)</h3>
+        <p>Real-time analytics dashboard built using Python & Streamlit.</p>
+        <iframe
+          src="https://streamlitapps-xnyn.onrender.com"
+          style="border:none; border-radius:16px; margin-bottom:50px;">
+        </iframe>
 
-    <h3>🔐 Web Application (Login + Dashboard + Payments) (Under testing)</h3>
-    <p>Interactive web application with secure authentication and Stripe payment.</p>
-    <iframe
-      src="https://next-app-ruddy-psi.vercel.app"
-      width="100%" height="925"
-      style="border:none; border-radius:16px;">
-    </iframe>
+        <h3>🔐 Web Application (Login + Dashboard + Payments) (Under testing)</h3>
+        <p>Interactive web application with secure authentication and Stripe payment.</p>
+        <iframe
+          src="https://next-app-ruddy-psi.vercel.app"
+          style="border:none; border-radius:16px;">
+        </iframe>
 
-	<h3>🤖 ChatBot (Under testing)</h3>
-    <p>Interactive Chat Bot which answers any question related to the website</p>
-    <iframe
-      src="https://chatbot-5xia.onrender.com"
-      width="100%" height="925"
-      style="border:none; border-radius:16px;">
-    </iframe>
+        <h3 style="margin-top:50px;">🤖 ChatBot (Under testing)</h3>
+        <p>Interactive Chat Bot which answers any question related to the website</p>
+        <iframe
+          src="https://chatbot-5xia.onrender.com"
+          style="border:none; border-radius:16px;">
+        </iframe>
+      </div>
+    </section>
 
-  </div>
-</section>
-	  
     <!-- SKILLS -->
     <section id="skills" class="reveal">
       <h2 class="section-heading">Skills &amp; Tools</h2>
@@ -857,14 +817,13 @@
     // Navbar style on scroll
     const header = document.getElementById("site-header");
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 10) {
-        header.classList.add("nav-scrolled");
-      } else {
-        header.classList.remove("nav-scrolled");
-      }
+      if (window.scrollY > 10) header.classList.add("nav-scrolled");
+      else header.classList.remove("nav-scrolled");
     });
 
-    // Reveal-on-scroll animations
+    // Reveal-on-scroll animations (FIXED for big sections like iframes)
+    // Problem: threshold 0.18 can delay reveal for very tall sections (iframes),
+    // so we use a very low threshold + rootMargin to trigger earlier.
     const revealEls = document.querySelectorAll(".reveal");
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -875,7 +834,10 @@
           }
         });
       },
-      { threshold: 0.18 }
+      {
+        threshold: 0.01,
+        rootMargin: "0px 0px -15% 0px"
+      }
     );
     revealEls.forEach((el) => revealObserver.observe(el));
 
@@ -890,11 +852,8 @@
             const id = entry.target.id;
             navLinks.forEach((link) => {
               const href = link.getAttribute("href");
-              if (href === `#${id}`) {
-                link.classList.add("nav-link--active");
-              } else {
-                link.classList.remove("nav-link--active");
-              }
+              if (href === `#${id}`) link.classList.add("nav-link--active");
+              else link.classList.remove("nav-link--active");
             });
           }
         });
@@ -910,6 +869,17 @@
         const aboutLink = document.querySelector('.nav-link[href="#about"]');
         if (aboutLink) aboutLink.classList.add("nav-link--active");
       }
+    });
+
+    // Card glow follow (very light)
+    document.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const mx = ((e.clientX - r.left) / r.width) * 100;
+        const my = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty("--mx", `${mx}%`);
+        card.style.setProperty("--my", `${my}%`);
+      });
     });
   </script>
 </body>
