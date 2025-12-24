@@ -637,9 +637,7 @@
             <li>Developed a reporting app to fetch, filter, and visualize server performance metrics.</li>
             <li>Created reusable scripts and scheduled workflows to reduce manual reporting effort.</li>
           </ul>
-          <div class="tag-row">
-            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Automation</span>
-          </div>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Automation</span></div>
         </div>
 
         <div class="card">
@@ -651,9 +649,7 @@
             <li>Improved data quality using Python preprocessing and validation scripts.</li>
             <li>Collaborated with cross-functional teams to deliver timely insights.</li>
           </ul>
-          <div class="tag-row">
-            <span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Reporting</span>
-          </div>
+          <div class="tag-row"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Reporting</span></div>
         </div>
 
         <div class="card">
@@ -665,9 +661,7 @@
             <li>Reduced manual testing effort by converting repetitive test cases into automated suites.</li>
             <li>Documented scenarios, bugs, and flows to support continuous integration.</li>
           </ul>
-          <div class="tag-row">
-            <span class="tag">Selenium</span><span class="tag">Python</span><span class="tag">QA Automation</span>
-          </div>
+          <div class="tag-row"><span class="tag">Selenium</span><span class="tag">Python</span><span class="tag">QA Automation</span></div>
         </div>
 
         <div class="card">
@@ -680,9 +674,7 @@
             <li>Image colorization using deep learning in Python.</li>
             <li>Data warehouse design, queue optimization models, and NoSQL e-commerce database.</li>
           </ul>
-          <div class="tag-row">
-            <span class="tag">Python</span><span class="tag">R</span><span class="tag">ML</span>
-          </div>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">R</span><span class="tag">ML</span></div>
         </div>
       </div>
     </section>
@@ -776,11 +768,11 @@
       <div class="grid">
         <div class="card">
           <h3>Master of Business Analytics (MSBA)</h3>
-          <p>Macquarie University, Sydney, Australia</p>
+          <p>Macquarie University, Sydney (Australia)</p>
         </div>
         <div class="card">
           <h3>Bachelor of Data Science (BDS)</h3>
-          <p>S P Jain School of Global Management, Sydney, Australia</p>
+          <p>S P Jain School of Global Management, Sydney (Australia)</p>
         </div>
       </div>
     </section>
@@ -808,16 +800,34 @@
   </footer>
 
   <script>
-    // ✅ NEW: stop browser auto-restoring scroll + avoid initial jump
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
-    window.addEventListener("load", () => {
-      // Only force top if user didn't open a specific section link (#about etc.)
-      if (!location.hash) {
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    // ✅ Stop auto-jump/auto-scroll on first visit (mobile friendly)
+    (() => {
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+      const KEY = "kr_first_visit_done";
+
+      function forceTopIfNoHash() {
+        if (location.hash) return;
+        if (sessionStorage.getItem(KEY)) return;
+
+        sessionStorage.setItem(KEY, "1");
+
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+        setTimeout(() => window.scrollTo(0, 0), 60);
+        setTimeout(() => window.scrollTo(0, 0), 220);
+
+        if (document.activeElement && document.activeElement.blur) {
+          document.activeElement.blur();
+        }
       }
-    });
+
+      window.addEventListener("load", forceTopIfNoHash);
+
+      window.addEventListener("pageshow", (e) => {
+        if (e.persisted) forceTopIfNoHash();
+      });
+    })();
 
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -889,7 +899,7 @@
       }
     });
 
-    // Card glow follow (very light)
+    // Card glow follow
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
